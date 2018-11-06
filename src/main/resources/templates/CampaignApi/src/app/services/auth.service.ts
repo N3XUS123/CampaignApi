@@ -4,11 +4,12 @@ import { LoginDto } from '../dto/login.dto';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login-response.interface';
 
-const authUrl = `localhost:9000`;
+const authUrl = `http://localhost:9000`;
 
 const requestOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   })
 };
 

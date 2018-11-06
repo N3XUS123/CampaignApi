@@ -2,25 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { MyMaterialModule } from './Login/login.material';
-import { RegistroComponent } from './registro/registro.component';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
- 
+import { MaterialModule } from './material.module';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+
+// import { AppRoutingModule } from './app-routing.module'; 
+// import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroComponent,
     LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MyMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    FormsModule
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,8 +8,8 @@ import { LoginDto } from '../dto/login.dto';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email: string;
-  password: string;
+  email: '';
+  password: '';
 
   constructor(private authService: AuthService) { }
 
@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginDto).subscribe(loginResp => {
         console.log(loginResp);
         this.authService.setLoginData(loginResp);
-
       }, error => {
+        console.log(loginDto);
         console.log('Error en petición de login');
       }
       );
