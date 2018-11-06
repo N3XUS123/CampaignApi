@@ -28,7 +28,7 @@ public class Usuario {
 	private String nombreUsuario;
 	@Column(name="EMAIL")
 	private String email;
-	@Column(name="CONTRASEÑA")
+	@Column(name="CONTRASENYA")
 	private String contrasenya;
 	@Column(name="GRUPO")
 	private String grupo;
