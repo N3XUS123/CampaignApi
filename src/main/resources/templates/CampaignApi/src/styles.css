@@ -3,3 +3,11 @@
 html {
     background-color: #9C3848 !important;
   }
+
+  .mat-tab-label {
+    min-width: 0%!important;
+    width: 100%;
+  }
+  .mat-tab-header-pagination {
+    display: none!important;
+  }
