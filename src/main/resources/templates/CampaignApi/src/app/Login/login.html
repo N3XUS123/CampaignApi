@@ -2,13 +2,13 @@
     <mat-tab label="Log In" id="tab">
       <div class="example-container">
         <mat-form-field>
-          <input matInput placeholder="Email">
+          <input matInput placeholder="Email" [(ngModel)]="email">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'">
+          <input matInput placeholder="Contraseña" [(ngModel)]="password">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
-        <button mat-raised-button color="primary">Entrar</button>
+        <button mat-raised-button color="primary" (click)="doLogin()">Entrar</button>
       </div>
     </mat-tab>
     <mat-tab label="Registro" id="tab">
