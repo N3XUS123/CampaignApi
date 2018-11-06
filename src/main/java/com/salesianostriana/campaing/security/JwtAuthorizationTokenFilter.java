@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+// TRATADO DEL TOKEN
 @Component
 public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 

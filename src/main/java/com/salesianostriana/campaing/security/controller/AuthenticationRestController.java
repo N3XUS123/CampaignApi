@@ -24,7 +24,7 @@ import com.salesianostriana.campaing.security.JwtAuthenticationRequest;
 import com.salesianostriana.campaing.security.JwtTokenUtil;
 import com.salesianostriana.campaing.security.service.JwtAuthenticationResponse;
 
-
+// Controller de logueo
 @RestController
 public class AuthenticationRestController {
 
@@ -41,6 +41,7 @@ public class AuthenticationRestController {
     @Qualifier("jwtUserDetailsService")
     private UserDetailsService userDetailsService;
 
+    // Inicio de sesión
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
 
@@ -54,6 +55,7 @@ public class AuthenticationRestController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
+    // Refrescar usuario
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String authToken = request.getHeader(tokenHeader);
@@ -66,15 +68,14 @@ public class AuthenticationRestController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
+    
+    // Error de autenticacion
     @ExceptionHandler({AuthenticationException.class})
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
 
-    /**
-     * Authenticates the user. If something is wrong, an {@link AuthenticationException} will be thrown
-     */
+    // Autentica el usuario. Si algo va mal, lanza una excepción
     private void authenticate(String username, String password) {
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);

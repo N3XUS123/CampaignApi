@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import lombok.Data;
 
+// PETICIÓN DE LOGIN
 @Data
 public class  JwtAuthenticationRequest implements Serializable {
 
