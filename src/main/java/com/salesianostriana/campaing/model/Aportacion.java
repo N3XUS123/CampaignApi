@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="APORTACIÓN")
+@Table(name="APORTACION")
 public class Aportacion {
 	
 	@Id @GeneratedValue

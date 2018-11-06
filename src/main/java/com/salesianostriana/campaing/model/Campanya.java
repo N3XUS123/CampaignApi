@@ -14,18 +14,18 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="CAMPAÑA")
+@Table(name="CAMPANYA")
 public class Campanya {
 
 	@Id @GeneratedValue
 	private long id;
-	@Column(name="NOMBRE_CAMPAÑA")
+	@Column(name="NOMBRE_CAMPANYA")
 	private String nombreCampanya;
 	@Column(name="UNIDO")
 	private boolean unido;
 	
 	@OneToMany
-	Set<Campanya> campanyas = new HashSet<Campanya>();
+	Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 
 	public Campanya() {
 		super();
