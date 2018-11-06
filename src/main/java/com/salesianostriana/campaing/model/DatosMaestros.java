@@ -1,13 +1,10 @@
 package com.salesianostriana.campaing.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -21,16 +18,20 @@ public class DatosMaestros {
 	private long id;
 	@Column(name="TIPO")
 	private String tipo;
-
-	@OneToMany
-	Set<Aportacion> aportaciones = new HashSet<Aportacion>();
+	
+	@ManyToOne
+	private Campanya campanya;
 	
 	public DatosMaestros() {
 	}
 
-	public DatosMaestros(String tipo) {
+	public DatosMaestros(String tipo, Campanya campanya) {
+		super();
 		this.tipo = tipo;
+		this.campanya = campanya;
 	}
+
+	
 	
 	
 }

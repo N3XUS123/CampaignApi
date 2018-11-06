@@ -24,8 +24,11 @@ public class Campanya {
 	@Column(name="UNIDO")
 	private boolean unido;
 	
-	@OneToMany
+	@OneToMany(mappedBy="campanya")
 	Set<Aportacion> aportaciones = new HashSet<Aportacion>();
+	
+	@OneToMany(mappedBy = "campanya")
+	Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
 
 	public Campanya() {
 		super();

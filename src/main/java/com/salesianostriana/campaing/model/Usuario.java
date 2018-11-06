@@ -35,8 +35,11 @@ public class Usuario {
 	@Column(name = "ENABLED")
     private Boolean enabled;
 	
-	@OneToMany
+	@OneToMany(mappedBy="usuario")
 	Set<Aportacion> aportaciones = new HashSet<Aportacion>();
+	
+	@ManyToMany(mappedBy = "usuario")
+	Set<Campanya> campanyas = new HashSet<Campanya>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
