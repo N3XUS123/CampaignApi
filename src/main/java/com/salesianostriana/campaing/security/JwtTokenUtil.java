@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+// GENERACIÓN DEL TOKEN
 @Component
 public class JwtTokenUtil implements Serializable {
 

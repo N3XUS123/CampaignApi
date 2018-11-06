@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import com.salesianostriana.campaing.model.Authority;
 import com.salesianostriana.campaing.model.Usuario;
 
+// CONVIERTE USUARIO DE LA DB EN USUARIO JWT PARA LOGUEAR
 public final class JwtUserFactory {
 
     private JwtUserFactory() {
@@ -20,7 +21,6 @@ public final class JwtUserFactory {
                 user.getNombreUsuario(),
                 user.getEmail(),
                 user.getContrasenya(),
-                user.getGrupo(),
                 user.getEnabled(),
                 mapToGrantedAuthorities(user.getAuthorities())
         );

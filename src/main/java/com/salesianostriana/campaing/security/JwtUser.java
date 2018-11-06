@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
+// USUARIO JWT UTILIZADO PARA EL LOGUEO
 @Data
 public class JwtUser implements UserDetails {
 
@@ -18,17 +19,17 @@ public class JwtUser implements UserDetails {
 	private final String username;
 	private final String email;
 	private final String password;
-	private final String group;
+//	private final String group;
 	private final boolean enabled;
 	private final Collection<? extends GrantedAuthority> authorities;
 
-	public JwtUser(Long id, String username, String email, String password, String group, boolean enabled,
+	public JwtUser(Long id, String username, String email, String password, boolean enabled,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.group = group;
+//		this.group = group;
 		this.enabled = enabled;
 		this.authorities = authorities;
 	}
@@ -36,11 +37,6 @@ public class JwtUser implements UserDetails {
     @JsonIgnore
     public Long getId() {
         return id;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @JsonIgnore
@@ -61,24 +57,10 @@ public class JwtUser implements UserDetails {
         return true;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     @JsonIgnore
     @Override
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
     }
 
 }
