@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { LoginDto } from '../dto/login.dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   email: '';
   password: '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginDto).subscribe(loginResp => {
         console.log(loginResp);
         this.authService.setLoginData(loginResp);
+        this.router.navigate(['registro']);
       }, error => {
         console.log(loginDto);
         console.log('Error en petición de login');
