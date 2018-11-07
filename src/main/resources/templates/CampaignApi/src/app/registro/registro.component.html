@@ -23,7 +23,10 @@
           <mat-option value="option">2º Telecomunicaciones</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="doRegistro()">Enviar</button>
+      <div id="botones">
+        <button mat-raised-button color="primary" routerLink="/login">Volver al LogIn</button>
+        <button mat-raised-button color="primary" (click)="doRegistro()">Enviar y entrar</button>
+      </div>
     </div>
   </mat-tab>
 </mat-tab-group>

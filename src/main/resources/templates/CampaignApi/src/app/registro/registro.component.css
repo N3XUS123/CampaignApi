@@ -46,4 +46,11 @@
   .example-container{
     padding: 4% !important;
   }
-  
+
+  #botones button{
+    width: 48%;
+  }
+
+  button.mat-raised-button:nth-child(1){
+    margin-right: 4%;
+  }
