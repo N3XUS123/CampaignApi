@@ -18,7 +18,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@PostMapping("/usuario")
+	@PostMapping("/registro")
 	public ResponseEntity<?> newUsuario(@RequestBody Usuario nuevoUsuario) {
 		Usuario u = usuarioService.save(nuevoUsuario);
 		//Usuario u = repository.save(nuevoUsuario);
