@@ -1,13 +1,13 @@
 export class RegistroDto {
-    nombreUsuario: string;
+    username: string;
     email: string;
-    contrasenya: string;
+    password: string;
     grupo: string;
 
-    constructor(n: string, e: string, c: string, g: string) {
-        this.nombreUsuario=n;
+    constructor(u: string, e: string, c: string, g: string) {
+        this.username = u;
         this.email = e;
-        this.contrasenya = c;
-        this.grupo=g;
+        this.password = c;
+        this.grupo = g;
     }
 }

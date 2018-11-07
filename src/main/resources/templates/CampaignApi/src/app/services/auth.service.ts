@@ -27,7 +27,6 @@ export class AuthService {
 
   setLoginData(loginResponse: LoginResponse) {
     localStorage.setItem('token', loginResponse.token);
-    localStorage.setItem('username', loginResponse.username);
     localStorage.setItem('email', loginResponse.email);
   }
 

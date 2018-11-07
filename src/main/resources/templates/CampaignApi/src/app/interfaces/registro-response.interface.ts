@@ -1,6 +1,7 @@
 export interface RegistroResponse {
-    nombreUsuario: string;
+    token: string;
+    username: string;
     email: string;
-    contrasenya: string;
+    password: string;
     grupo: string;
 }
