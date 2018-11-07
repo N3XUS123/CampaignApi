@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.salesianostriana.campaing.model.Authority;
+import com.salesianostriana.campaing.model.Authorities;
 import com.salesianostriana.campaing.model.Usuario;
 
 // CONVIERTE USUARIO DE LA DB EN USUARIO JWT PARA LOGUEAR
@@ -26,9 +26,9 @@ public final class JwtUserFactory {
         );
     }
 
-    private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authority> authorities) {
-        return authorities.stream()
-                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+    private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authorities> list) {
+        return list.stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
                 .collect(Collectors.toList());
     }
 }
