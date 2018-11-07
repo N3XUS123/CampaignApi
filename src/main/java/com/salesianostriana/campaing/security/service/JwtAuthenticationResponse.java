@@ -2,20 +2,19 @@ package com.salesianostriana.campaing.security.service;
 
 import java.io.Serializable;
 
-/**
- * Created by stephan on 20.03.16.
- */
+import lombok.Data;
+
+@Data
 public class JwtAuthenticationResponse implements Serializable {
 
     private static final long serialVersionUID = 1250166508152483573L;
 
     private final String token;
-
-    public JwtAuthenticationResponse(String token) {
+    private final String email;
+    
+    public JwtAuthenticationResponse(String token, String email) {
         this.token = token;
+        this.email = email;
     }
 
-    public String getToken() {
-        return this.token;
-    }
 }

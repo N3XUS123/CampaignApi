@@ -21,4 +21,16 @@ public class UsuarioService {
 		u.addRole(new Authorities("ROLE_USER", u));
 		return repository.save(u);
 	}
+	
+	public Usuario findByEmail(String email) {
+		return repository.findByEmail(email);
+	}
+	
+	public boolean checkEmailRegistered(String email) {
+		boolean verify = false;
+		if (findByEmail(email) != null) {
+			verify = true;
+		}
+		return verify;
+	}
 }

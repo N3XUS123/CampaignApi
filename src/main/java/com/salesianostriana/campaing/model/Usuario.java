@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -29,10 +31,12 @@ public class Usuario {
 	private String nombreUsuario;
 	@Column(name = "EMAIL")
 	private String email;
+	@JsonIgnore
 	@Column(name = "CONTRASENYA")
 	private String contrasenya;
 	@Column(name = "GRUPO")
 	private String grupo;
+	@JsonIgnore
 	@Column(name = "ENABLED")
 	private Boolean enabled;
 
