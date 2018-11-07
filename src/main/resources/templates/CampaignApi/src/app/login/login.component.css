@@ -46,4 +46,8 @@
   .example-container{
     padding: 4% !important;
   }
+
+  #link{
+    margin: 0 auto;
+  }
   

@@ -8,8 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
 
-// import { AppRoutingModule } from './app-routing.module'; 
-// import { RouterModule } from '@angular/router';
+ import { AppRoutingModule } from './app-routing.module'; 
+ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,9 @@ import { RegistroComponent } from './registro/registro.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

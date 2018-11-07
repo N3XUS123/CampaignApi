@@ -22,12 +22,16 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginDto).subscribe(loginResp => {
         console.log(loginResp);
         this.authService.setLoginData(loginResp);
-        this.router.navigate(['registro']);
+        this.router.navigate(['']);
       }, error => {
         console.log(loginDto);
         console.log('Error en petición de login');
       }
       );
   }
+
+  loginRegistro() {
+      this.router.navigate(['registro.component']);
+}
 
 }
