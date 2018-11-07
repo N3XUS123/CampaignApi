@@ -1,3 +1,27 @@
-<p>
-  registro works!
-</p>
+<mat-tab label="Registro" id="tab">
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Nombre" [(ngModel)]="nombreUsuario">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" [type]="email" [(ngModel)]="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Contraseña" [type]="hide2 ? 'text' : 'password'" [(ngModel)]="contrasenya">
+      <mat-icon matSuffix (click)="hide2 = !hide2">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Repetir contraseña" [type]="hide3 ? 'text' : 'password'">
+      <mat-icon matSuffix (click)="hide3 = !hide3">{{hide2 ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Clase" [(ngModel)]="grupo">
+        <mat-option value="option">1º DAM</mat-option>
+        <mat-option value="option">2º DAM</mat-option>
+        <mat-option value="option">1º Telecomunicaciones</mat-option>
+        <mat-option value="option">2º Telecomunicaciones</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="doRegistro()">Enviar</button>
+  </div>
+</mat-tab>
