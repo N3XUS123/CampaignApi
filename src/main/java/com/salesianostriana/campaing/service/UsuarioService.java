@@ -1,8 +1,5 @@
 package com.salesianostriana.campaing.service;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +16,9 @@ public class UsuarioService {
 	private UsuarioRepository repository;
 
 	public Usuario save(RegistroDto nuevoUsuario) {
-		Usuario u = new Usuario(nuevoUsuario.getUsername(), nuevoUsuario.getEmail(), PasswordEncrypt.encryptPassword(nuevoUsuario.getPassword()),
-				nuevoUsuario.getGrupo());
-		Authorities a = new Authorities("ROLE_USER", u);
-       
-		u.setAuthorities(Stream.of(a).collect(Collectors.toList()));
+		Usuario u = new Usuario(nuevoUsuario.getUsername(), nuevoUsuario.getEmail(),
+				PasswordEncrypt.encryptPassword(nuevoUsuario.getPassword()), nuevoUsuario.getGrupo());
+		u.addRole(new Authorities("ROLE_USER", u));
 		return repository.save(u);
 	}
 }
