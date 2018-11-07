@@ -42,4 +42,8 @@
   input.example-right-align {
     -moz-appearance: textfield;
   }
+
+  .example-container{
+    padding: 4% !important;
+  }
   
