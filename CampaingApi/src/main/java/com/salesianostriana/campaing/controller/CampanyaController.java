@@ -20,7 +20,7 @@ public class CampanyaController {
 	private CampanyaRepository repository;
 	
 	@GetMapping("/listarCampanyas")
-	@PreAuthorize("authenticated()")
+	@PreAuthorize("hasRole('USER')")
 	public List<Campanya> listAll() {
 		return repository.findAll();
 	}
