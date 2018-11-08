@@ -1,0 +1,58 @@
+#centrado {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 3%;
+    background-color: #FEFCFB;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #0A1128;
+    box-shadow: 4px 4px 20px 1px rgba(0, 0, 0, 0.55);
+  }
+  
+  @media only screen and (max-width: 750px) {
+    #centrado {
+      width: 85%;
+    }
+  }
+  
+  @media only screen and (max-width: 1050px) {
+    #centrado {
+      width: 65%;
+    }
+  }
+  
+  .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container>* {
+    width: 100%;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+
+  .example-container{
+    padding: 4% !important;
+  }
+
+  #botones button{
+    width: 48%;
+    margin-left: 95px;
+    
+  }
+
+  button.mat-raised-button:nth-child(1){
+    margin-right: 4%;
+  }
