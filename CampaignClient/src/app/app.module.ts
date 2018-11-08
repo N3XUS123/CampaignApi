@@ -10,12 +10,14 @@ import { RegistroComponent } from './registro/registro.component';
 
  import { AppRoutingModule } from './app-routing.module'; 
  import { RouterModule } from '@angular/router';
+import { RegistroCampanyaComponent } from './registroCampanya/registroCampanya.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    RegistroCampanyaComponent
   ],
   imports: [
     BrowserModule,

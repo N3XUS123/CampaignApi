@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { RegistroCampanyaComponent } from './registroCampanya/registroCampanya.component';
 
 const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: LoginComponent }
+  { path: '', component: LoginComponent },
+  { path: 'registroCampanya', component: RegistroCampanyaComponent }
 ];
 
 @NgModule({

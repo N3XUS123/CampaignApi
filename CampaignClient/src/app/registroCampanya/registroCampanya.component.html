@@ -1,0 +1,12 @@
+<mat-tab-group id="centrado">
+    <mat-tab label="Nueva campaña" id="tab">
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Nombre" [(ngModel)]="nombreCampanya">
+        </mat-form-field>
+        <div id="botones">
+          <button mat-raised-button color="primary" (click)="doRegistroCampanya()">Guardar</button>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
