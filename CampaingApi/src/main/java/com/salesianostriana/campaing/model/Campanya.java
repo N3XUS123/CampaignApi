@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -25,9 +27,11 @@ public class Campanya {
 	private boolean unido;
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
 
 	public Campanya() {
