@@ -3,6 +3,9 @@
 html {
     background-color: #9C3848 !important;
   }
+  body {
+    margin: 0;
+  }
 
   .mat-tab-label {
     min-width: 0%!important;
