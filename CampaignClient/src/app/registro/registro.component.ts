@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroDto } from '../dto/registro.dto';
-import { RegistroService } from '../services/registro.service';
+import { RegistroDto } from '../_dto/registro.dto';
+import { RegistroService } from '../_services/registro.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -14,7 +15,7 @@ export class RegistroComponent implements OnInit {
   contrasenya: string;
   grupo: string;
 
-  constructor(private registroService: RegistroService) { }
+  constructor(private registroService: RegistroService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,6 +25,7 @@ export class RegistroComponent implements OnInit {
     this.registroService.registro(registroDto).subscribe(registroResp => {
       console.log(registroResp);
       this.registroService.setRegistroData(registroResp);
+      this.router.navigate(['/main']);
 
     }, error => {
       console.log('Error en petición de registro');

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroCampanyaService } from '../services/registroCampanya.service';
-import { RegistroCampanyaDto } from '../dto/registroCampanya.dto';
+import { RegistroCampanyaService } from '../_services/registroCampanya.service';
+import { RegistroCampanyaDto } from '../_dto/registroCampanya.dto';
 
 @Component({
   selector: 'app-registroCampanya',

@@ -1,4 +1,45 @@
 <mat-toolbar color="primary">
-  <button mat-button id="title">Campañas Salesianas</button>
-  <a mat-button routerlink="/main">Campañas</a>
+  <mat-toolbar-row>
+    <span>Campañas salesianas</span>
+    <a routerLink="/main" mat-button>
+      <mat-icon>collections</mat-icon> Campañas
+    </a>
+    <a routerLink="/main/mine" mat-button>
+      <mat-icon>collections_bookmark</mat-icon> Mis campañas
+    </a>
+    <a routerLink="/addCampaign" mat-button>
+      <mat-icon>add_to_photos</mat-icon> Unirse a campaña
+    </a>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="navMenu">
+      <mat-icon>account_box</mat-icon>
+    </button>
+    <mat-menu #navMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>settings</mat-icon>
+        <span>Administración</span>
+      </button>
+      <button mat-menu-item (click)="doLogout()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Desconectar</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
 </mat-toolbar>
+
+<div fxLayout="row wrap" class="container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Nombre campaña</mat-card-title>
+      <mat-card-subtitle>Fecha</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button>Ver más</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

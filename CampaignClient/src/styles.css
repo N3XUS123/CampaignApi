@@ -1,7 +1,8 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+
 html {
-    background-color: #9C3848 !important;
+    background-color: #9C3848 !important; /** #fafafa (Este color es mas comun en material design) **/ 
   }
   body {
     margin: 0;

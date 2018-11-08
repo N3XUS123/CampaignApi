@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginDto } from '../dto/login.dto';
+import { LoginDto } from '../_dto/login.dto';
 import { Observable } from 'rxjs';
-import { LoginResponse } from '../interfaces/login-response.interface';
+import { LoginResponse } from '../_interfaces/login-response.interface';
 
 const authUrl = `http://localhost:9000`;
 
@@ -28,6 +28,16 @@ export class AuthService {
   setLoginData(loginResponse: LoginResponse) {
     localStorage.setItem('token', loginResponse.token);
     localStorage.setItem('email', loginResponse.email);
+  }
+
+  getToken(): String {
+    return localStorage.getItem('token');
+  }
+
+  removeLoginData() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('username');
   }
 
   /*

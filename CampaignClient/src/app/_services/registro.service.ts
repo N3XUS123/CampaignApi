@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RegistroResponse } from '../interfaces/registro-response.interface';
-import { RegistroDto } from '../dto/registro.dto';
+import { RegistroResponse } from '../_interfaces/registro-response.interface';
+import { RegistroDto } from '../_dto/registro.dto';
 
 const registroUrl = `http://localhost:9000`;
 

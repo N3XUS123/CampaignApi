@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RegistroCampanyaDto } from '../dto/registroCampanya.dto';
-import { RegistroCampanyaResponse } from '../interfaces/registroCampanya-response.interface';
+import { RegistroCampanyaDto } from '../_dto/registroCampanya.dto';
+import { RegistroCampanyaResponse } from '../_interfaces/registroCampanya-response.interface';
 
 const registroCampanyaUrl = `http://localhost:9000`;
 

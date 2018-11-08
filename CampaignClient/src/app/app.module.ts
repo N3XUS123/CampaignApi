@@ -7,12 +7,12 @@ import { MaterialModule } from './material.module';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
-
 import { AppRoutingModule } from './app-routing.module'; 
 import { RouterModule } from '@angular/router';
 import { DatosMaestrosComponent } from './aniadirDatosMaestros/datosMaestros.component';
 import { RegistroCampanyaComponent } from './registroCampanya/registroCampanya.component';
 import { MainComponent } from './main/main.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { MainComponent } from './main/main.component';
     MaterialModule,
     FormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
