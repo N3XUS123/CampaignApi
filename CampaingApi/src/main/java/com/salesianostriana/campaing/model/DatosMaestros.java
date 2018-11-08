@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -19,7 +21,7 @@ public class DatosMaestros {
 	@Column(name="TIPO")
 	private String tipo;
 	
-	@ManyToOne
+	@ManyToOne @JsonIgnore
 	private Campanya campanya;
 	
 	public DatosMaestros() {
