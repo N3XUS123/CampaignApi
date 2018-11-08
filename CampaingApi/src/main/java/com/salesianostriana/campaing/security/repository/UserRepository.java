@@ -7,4 +7,5 @@ import com.salesianostriana.campaing.model.Usuario;
 public interface UserRepository extends JpaRepository<Usuario, Long> {
    
 	Usuario findByEmail(String email);
+
 }
