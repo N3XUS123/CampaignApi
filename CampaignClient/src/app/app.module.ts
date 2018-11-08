@@ -7,15 +7,16 @@ import { MaterialModule } from './material.module';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
-
- import { AppRoutingModule } from './app-routing.module'; 
- import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module'; 
+import { RouterModule } from '@angular/router';
+import { DatosMaestrosComponent } from './aniadirDatosMaestros/datosMaestros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    DatosMaestrosComponent
   ],
   imports: [
     BrowserModule,
