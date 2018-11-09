@@ -1,7 +1,7 @@
 export class RegistroCampanyaDto {
-    nombre: string;
+    nombreCampanya: string;
 
     constructor(n: string) {
-        this.nombre = n;
+        this.nombreCampanya = n;
     }
 }

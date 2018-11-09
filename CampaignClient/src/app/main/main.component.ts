@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { CampaignService } from '../_services/campaign.service';
+import { CampaignResponse } from '../_interfaces/campaign.interface';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,7 @@ import { CampaignService } from '../_services/campaign.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  nombreC: string;
+  campaigns: CampaignResponse[];
 
   constructor(private authService: AuthService, private campaignService: CampaignService, private router: Router) {}
 
@@ -27,10 +28,10 @@ export class MainComponent implements OnInit {
   }
 
   showData() {
-    this.campaignService.getCampaigns().subscribe(campaigns => {
-      console.log('hola');
+    this.campaignService.getCampaigns().subscribe(campaignList => {
+      this.campaigns = campaignList;
     }, error => {
-      console.log('Error en petición de login');
+      console.log('Error. No recibe datos.');
     });
   }
 

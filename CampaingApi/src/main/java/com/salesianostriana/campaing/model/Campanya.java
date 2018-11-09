@@ -3,6 +3,7 @@ package com.salesianostriana.campaing.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,11 +28,11 @@ public class Campanya {
 	@Column(name="UNIDO")
 	private boolean unido;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
 
@@ -45,5 +46,17 @@ public class Campanya {
 		this.unido = unido;
 	}
 	
+	public void addAportacion(Aportacion a) {
+		if (a != null) {
+			a.setCampanya(this);
+			this.getAportaciones().add(a);
+		}
+	}
 	
+	public void removeAportacion(Aportacion a) {
+		if (a != null) {
+			a.setCampanya(null);
+			this.getAportaciones().remove(a);
+		}
+	}
 }
