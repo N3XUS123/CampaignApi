@@ -1,9 +1,9 @@
 package com.salesianostriana.campaing.controller;
 
 import java.net.URI;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.salesianostriana.campaing.formbean.CampanyaDto;
 import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.repository.CampanyaRepository;
+import com.salesianostriana.campaing.service.CampanyaService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
@@ -26,20 +29,29 @@ public class CampanyaController {
 	@Autowired
 	private CampanyaRepository repository;
 	
-	@GetMapping("/listarCampanyas")
-	@PreAuthorize("hasRole('USER')")
-	public List<Campanya> listAll() {
-		return repository.findAll();
-	}
+	@Autowired
+	private CampanyaService service;
 	
-	@PostMapping("/campanya")
-	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> newCampanya(@RequestBody Campanya newCampanya) {
-		Campanya c = repository.save(newCampanya);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(c.getId()).toUri();
+	//Listar
+		@PreAuthorize("hasRole('USER')")
+		@GetMapping("/listarCampanyas")
+		public ResponseEntity<?> listarCampanyas(){
+			return ResponseEntity
+					.status(HttpStatus.ACCEPTED)
+					.body(repository.findAll());
+		}
+	
+		//Añadir
+		@PreAuthorize("hasRole('ADMIN')")
+		@PostMapping("/registroCampanya")
+		public ResponseEntity<?> newCampanya(@RequestBody CampanyaDto newCampanya) {
+			Campanya c = service.save(newCampanya);
 
-		return ResponseEntity.created(location).body(c);
-	}
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(c.getId())
+					.toUri();
+
+			return ResponseEntity.created(location).body(c);
+		}
 	
 	@DeleteMapping("/campanya/{id}")
 	@PreAuthorize("hasRole('ADMIN')")

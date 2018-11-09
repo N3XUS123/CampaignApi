@@ -81,7 +81,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/configuration/**", // swagger configuration
 						"/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js")
 				.permitAll().antMatchers("/h2-console/**/**").permitAll().antMatchers("/auth/**", "/registro")
-				.permitAll().anyRequest().authenticated();
+				.permitAll()
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
+				.anyRequest().authenticated();
 
 		// Custom JWT based security filter
 		httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

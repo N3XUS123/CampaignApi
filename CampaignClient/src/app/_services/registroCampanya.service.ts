@@ -5,11 +5,14 @@ import { RegistroCampanyaDto } from '../_dto/registroCampanya.dto';
 import { RegistroCampanyaResponse } from '../_interfaces/registroCampanya-response.interface';
 
 const registroCampanyaUrl = `http://localhost:9000`;
+const token = localStorage.getItem('token');
 
 const requestOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
+    'Access-Control-Allow-Origin': '*',
+    'Authorization': `Bearer ${token}`
+
   })
 };
 
@@ -25,7 +28,8 @@ export class RegistroCampanyaService {
   }
 
   setRegistroCampanyaData(registroCampanyaResponse: RegistroCampanyaResponse) {
-    localStorage.setItem('nombre', registroCampanyaResponse.nombreCampanya);
+    localStorage.setItem('nombreCampanya', registroCampanyaResponse.nombreCampanya);
+    localStorage.setItem('codigo', registroCampanyaResponse.codigo);
   }
 
 }
