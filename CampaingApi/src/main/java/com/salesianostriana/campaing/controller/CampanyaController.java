@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 
 @RestController
-@ApiOperation(value = "", authorizations = { @Authorization(value="token") })
+@ApiOperation(value = "Prueba2", authorizations = { @Authorization(value="token") }, nickname="Prueba")
 public class CampanyaController {
 
 	@Autowired
