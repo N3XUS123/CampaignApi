@@ -2,7 +2,7 @@
 
 
 html {
-    background-color: #9C3848 !important; /** #fafafa (Este color es mas comun en material design) **/ 
+    background-image: url("images/fondo.png") ;
   }
   body {
     margin: 0;

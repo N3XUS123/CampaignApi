@@ -18,3 +18,11 @@
 mat-card-actions {
     text-align: right;
 }
+
+#toolbar{
+    background-color: #033f63;
+}
+
+.example-card{
+    background-color: #ffede1;
+}
