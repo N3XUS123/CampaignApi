@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
-import { DatosMaestrosComponent } from './aniadirDatosMaestros/datosMaestros.component';
+import { DatosMaestrosComponent } from './DatosMaestros/datosMaestros.component';
 import { RegistroCampanyaComponent } from './registroCampanya/registroCampanya.component';
 import { MainComponent } from './main/main.component';
 

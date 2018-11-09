@@ -3,11 +3,13 @@ package com.salesianostriana.campaing.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,26 +26,41 @@ public class Campanya {
 	private long id;
 	@Column(name="NOMBRE_CAMPANYA")
 	private String nombreCampanya;
-	@Column(name="UNIDO")
-	private boolean unido;
+	@Column(name="CODIGO")
+	private String codigo;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<Usuario> usuario = new HashSet<Usuario>();
 
 	public Campanya() {
 		super();
 	}
 
-	public Campanya(String nombreCampanya, boolean unido) {
-		super();
+	public Campanya(String nombreCampanya, String codigo) {
 		this.nombreCampanya = nombreCampanya;
-		this.unido = unido;
+		this.codigo = codigo;
 	}
 	
+	public void addAportacion(Aportacion a) {
+		if (a != null) {
+			a.setCampanya(this);
+			this.getAportaciones().add(a);
+		}
+	}
 	
+	public void removeAportacion(Aportacion a) {
+		if (a != null) {
+			a.setCampanya(null);
+			this.getAportaciones().remove(a);
+		}
+	}
 }

@@ -10,6 +10,7 @@ import { RegistroCampanyaDto } from '../_dto/registroCampanya.dto';
 export class RegistroCampanyaComponent implements OnInit {
 
   nombreCampanya: string;
+  codigo: string;
 
   constructor(private registroCampanyaService: RegistroCampanyaService) { }
 
@@ -17,7 +18,7 @@ export class RegistroCampanyaComponent implements OnInit {
   }
 
   doRegistroCampanya() {
-    const registroCampanyaDto = new RegistroCampanyaDto(this.nombreCampanya);
+    const registroCampanyaDto = new RegistroCampanyaDto(this.nombreCampanya, this.codigo);
     this.registroCampanyaService.registroCampanya(registroCampanyaDto).subscribe(registroCampanyaResp => {
       console.log(registroCampanyaResp);
       this.registroCampanyaService.setRegistroCampanyaData(registroCampanyaResp);
