@@ -1,28 +1,47 @@
 #title {
-    font-size: 13pt;
+  font-size: 13pt;
 }
+
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
 .container {
-    margin: 50px auto;
-    width: 90%;
+  margin: 50px auto;
+  width: 90%;
 }
 
 .container mat-card {
-    margin: 20px;
-    width: 350px;
+  margin: 20px;
+  width: 350px;
 }
 
 mat-card-actions {
-    text-align: right;
+  text-align: right;
 }
 
-#toolbar{
-    background-color: #033f63;
+#toolbar {
+  background-color: #033f63;
 }
 
-.example-card{
-    background-color: #ffede1;
+.example-card {
+  background-color: #ffede1;
+}
+
+.mat-toolbar-row>div:nth-child(1) {
+  background-image: url('../../images/logo.png');
+  height: 62px;
+  width: 170px;
+  border-radius: 0%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+a.mat-button {
+  margin: 0 0 0 1%;
+}
+
+a.mat-button:first-child {
+  margin: 0 2% 0 1%;
 }
