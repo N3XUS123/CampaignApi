@@ -9,10 +9,18 @@ import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
 import { AppRoutingModule } from './app-routing.module'; 
 import { RouterModule } from '@angular/router';
-import { DatosMaestrosComponent } from './aniadirDatosMaestros/datosMaestros.component';
+import { DatosMaestrosComponent } from './DatosMaestros/datosMaestros.component';
 import { RegistroCampanyaComponent } from './registroCampanya/registroCampanya.component';
 import { MainComponent } from './main/main.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { DialogNuevoDatoComponent } from './dialog-nuevo-dato/dialog-nuevo-dato.component';
+import { AuthService } from './_services/auth.service';
+import { DatosService } from './_services/datosMaestros.service';
+
 
 @NgModule({
   declarations: [
@@ -21,8 +29,12 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     RegistroComponent,
     DatosMaestrosComponent,
     RegistroCampanyaComponent,
-    MainComponent
+    MainComponent,
+    DialogNuevoDatoComponent
   ],
+  entryComponents: [
+    DialogNuevoDatoComponent
+],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,9 +43,14 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTableModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [AuthService, DatosService,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

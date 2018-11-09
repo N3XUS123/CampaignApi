@@ -1,0 +1,15 @@
+<div fxLayout="column" fFlexFill>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Nombre" [(ngModel)]="tipo">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-select placeholder="Campaña" [(value)]="campanya">
+        <mat-option *ngFor="let color of colors" [value]="campanya">
+          {{campanya}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="addDato()">Guardar dato</button>
+</div>
