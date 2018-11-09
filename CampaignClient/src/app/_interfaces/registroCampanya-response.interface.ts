@@ -1,4 +1,3 @@
 export interface RegistroCampanyaResponse {
-    token: string;
-    nombre: string;
+    nombreCampanya: string;
 }
