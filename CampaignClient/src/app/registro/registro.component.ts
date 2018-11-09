@@ -23,7 +23,6 @@ export class RegistroComponent implements OnInit {
   doRegistro() {
     const registroDto = new RegistroDto(this.nombreUsuario, this.email, this.contrasenya, this.grupo);
     this.registroService.registro(registroDto).subscribe(registroResp => {
-      console.log(registroResp);
       this.registroService.setRegistroData(registroResp);
       this.router.navigate(['/main']);
 

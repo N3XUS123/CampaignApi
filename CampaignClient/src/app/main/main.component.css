@@ -2,8 +2,8 @@
   font-size: 13pt;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+#navbar-right {
+  margin-left: auto;
 }
 
 .container {
@@ -28,7 +28,27 @@ mat-card-actions {
   background-color: #ffede1;
 }
 
-.mat-toolbar-row>div:nth-child(1) {
+mat-toolbar {
+  overflow: hidden;
+}
+
+@media (min-width: 1000px) {
+  mat-toolbar-row > .mat-icon-button {
+      display: none;
+  }
+
+  mat-sidenav {
+    display: none;
+  }
+}
+
+@media (max-width: 999px) {
+  mat-toolbar-row .mat-button {
+    display:none;
+  }
+}
+
+.navbar-logo {
   background-image: url('../../images/logo.png');
   height: 62px;
   width: 170px;
@@ -44,4 +64,28 @@ a.mat-button {
 
 a.mat-button:first-child {
   margin: 0 2% 0 1%;
+}
+
+#floatingButton {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 9999999;
+}
+
+mat-sidenav {
+  position: fixed;
+  background-color: #033f63;
+  color: white;
+  width: 100%;
+  z-index: 99999999999;
+}
+
+.center {
+  text-align: center;
+}
+
+mat-sidenav li {
+  list-style-type: none;
+  text-decoration: none;
 }
