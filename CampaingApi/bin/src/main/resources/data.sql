@@ -1,0 +1,6 @@
+INSERT INTO USUARIO (ID, NOMBRE_USUARIO, CONTRASENYA, EMAIL, ENABLED, GRUPO) VALUES (1, 'admin', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'admin@admin.com', 1, '2DAM');
+INSERT INTO AUTHORITIES (ID, authority, user_id) VALUES (1, 'ROLE_USER', 1);
+INSERT INTO AUTHORITIES (ID, authority, user_id) VALUES (2, 'ROLE_ADMIN', 1);
+
+// Cargado Campaña Kilo
+INSERT INTO CAMPANYA (ID, NOMBRE_CAMPANYA) VALUES (1, 'Campaña del Kilo');
