@@ -6,8 +6,10 @@ import { RegistroCampanyaResponse } from '../_interfaces/registroCampanya-respon
 
 const registroCampanyaUrl = `http://localhost:9000`;
 
+const token = localStorage.getItem('token');
 const requestOptions = {
   headers: new HttpHeaders({
+    'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
   })
