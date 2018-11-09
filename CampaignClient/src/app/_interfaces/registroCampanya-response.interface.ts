@@ -1,4 +1,6 @@
 export interface RegistroCampanyaResponse {
     token: string;
-    nombre: string;
+    email: string;
+    username: string;
+    admin: boolean;
 }

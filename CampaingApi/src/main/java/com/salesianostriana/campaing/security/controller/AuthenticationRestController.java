@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.salesianostriana.campaing.config.Exceptions;
 import com.salesianostriana.campaing.formbean.RegistroDto;
+import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.security.JwtAuthenticationRequest;
 import com.salesianostriana.campaing.security.JwtTokenUtil;
 import com.salesianostriana.campaing.security.service.JwtAuthenticationResponse;
@@ -46,6 +47,8 @@ public class AuthenticationRestController {
 	@Autowired
 	@Qualifier("jwtUserDetailsService")
 	private UserDetailsService userDetailsService;
+	
+	
 
 	// Inicio de sesión
 	@RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
@@ -53,13 +56,16 @@ public class AuthenticationRestController {
 			throws AuthenticationException {
 
 		authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
-
+		
+		Usuario u = usuarioService.findByEmail(authenticationRequest.getEmail());
+		boolean admin = usuarioService.checkAdmin(authenticationRequest.getEmail());
+		
 		// Reload password post-security so we can generate the token
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
 		// Return the token
-		return ResponseEntity.ok(new JwtAuthenticationResponse(token, authenticationRequest.getEmail()));
+		return ResponseEntity.ok(new JwtAuthenticationResponse(token, u.getEmail(), u.getNombreUsuario(), admin));
 	}
 	
     @PostMapping("/registro")
@@ -71,12 +77,15 @@ public class AuthenticationRestController {
     	// Create de User
     	usuarioService.save(nuevoUsuario);
     	
+    	Usuario u = usuarioService.findByEmail(nuevoUsuario.getEmail());
+		boolean admin = usuarioService.checkAdmin(nuevoUsuario.getEmail());
+    	
         // Reload password post-security so we can generate the token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(nuevoUsuario.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token, nuevoUsuario.getEmail()));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token, u.getEmail(), u.getNombreUsuario(), admin));
     }
 
 //    // Refrescar usuario

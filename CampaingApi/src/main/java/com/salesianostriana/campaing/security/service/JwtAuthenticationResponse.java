@@ -11,10 +11,14 @@ public class JwtAuthenticationResponse implements Serializable {
 
     private final String token;
     private final String email;
+    private final String username;
+    private final boolean admin;
     
-    public JwtAuthenticationResponse(String token, String email) {
+    public JwtAuthenticationResponse(String token, String email, String username, boolean admin) {
         this.token = token;
         this.email = email;
+        this.username = username;
+        this.admin = admin;
     }
 
 }

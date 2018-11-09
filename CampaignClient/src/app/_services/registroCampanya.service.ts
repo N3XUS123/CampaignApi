@@ -28,7 +28,7 @@ export class RegistroCampanyaService {
 
   setRegistroCampanyaData(registroCampanyaResponse: RegistroCampanyaResponse) {
     localStorage.setItem('token', registroCampanyaResponse.token);
-    localStorage.setItem('nombre', registroCampanyaResponse.nombre);
+    localStorage.setItem('email', registroCampanyaResponse.email);
   }
 
 }

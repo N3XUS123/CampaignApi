@@ -1,5 +1,7 @@
 package com.salesianostriana.campaing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,15 @@ public class UsuarioService {
 			verify = true;
 		}
 		return verify;
+	}
+	
+	public boolean checkAdmin(String email) {
+		List<Authorities> auths = findByEmail(email).getAuthorities();
+		for (Authorities i: auths) {
+		    if (i.getAuthority().contains("ROLE_ADMIN"))
+				return true;
+		}
+		
+		return false;	
 	}
 }

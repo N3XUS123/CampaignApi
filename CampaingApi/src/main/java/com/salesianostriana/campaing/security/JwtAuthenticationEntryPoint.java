@@ -30,7 +30,7 @@ public class JwtAuthenticationEntryPoint extends BasicAuthenticationEntryPoint
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		setRealmName("midominio");
+		setRealmName("localhost");
 	}
 
 	@Override
