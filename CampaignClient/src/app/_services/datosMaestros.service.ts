@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 import { Datos } from '../_interfaces/datosMaestros.interface';
 import { DatoCreateDto } from '../_dto/datosMaestros.dto';
 import { DatoCreateResponse } from '../_interfaces/datosMaestros-response.interface';
-const datosUrl = `${environment.apiUrl}/DatosMaestros`;
+const datosUrl = `${environment.apiUrl}/datosMaestros`;
 
 
 @Injectable({
@@ -24,7 +24,7 @@ createDato(datoCreateDto: DatoCreateDto): Observable<DatoCreateResponse> {
         })
       };
   
-      return this.http.post<DatoCreateResponse>(`${datosUrl}/create`, datoCreateDto, requestOptions);
+      return this.http.post<DatoCreateResponse>(`${datosUrl}/add`, datoCreateDto, requestOptions);
   }
 
 getAllDatos(): Observable<Datos[]> {
@@ -36,6 +36,6 @@ getAllDatos(): Observable<Datos[]> {
       })
     };
 
-    return this.http.get<Datos[]>(`${datosUrl}/Lista`, requestOptions);
+    return this.http.get<Datos[]>(`${datosUrl}/list`, requestOptions);
    }
 }

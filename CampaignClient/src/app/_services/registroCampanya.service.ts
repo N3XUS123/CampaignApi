@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegistroCampanyaDto } from '../_dto/registroCampanya.dto';
 import { RegistroCampanyaResponse } from '../_interfaces/registroCampanya-response.interface';
+import { environment } from 'src/environments/environment.prod';
 
-const registroCampanyaUrl = `http://localhost:9000`;
+const registroCampanyaUrl = `${environment.apiUrl}/campanyas`;
 
 const token = localStorage.getItem('token');
 const requestOptions = {
@@ -24,7 +25,7 @@ export class RegistroCampanyaService {
   constructor(private http: HttpClient) { }
 
   registroCampanya(registroCampanyaDto: RegistroCampanyaDto): Observable<RegistroCampanyaResponse> {
-    return this.http.post<RegistroCampanyaResponse>(`${registroCampanyaUrl}/registroCampanya`, registroCampanyaDto, requestOptions);
+    return this.http.post<RegistroCampanyaResponse>(`${registroCampanyaUrl}/new`, registroCampanyaDto, requestOptions);
   }
 
   setRegistroCampanyaData(registroCampanyaResponse: RegistroCampanyaResponse) {

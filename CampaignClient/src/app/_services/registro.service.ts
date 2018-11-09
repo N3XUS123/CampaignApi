@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegistroResponse } from '../_interfaces/registro-response.interface';
 import { RegistroDto } from '../_dto/registro.dto';
+import { environment } from 'src/environments/environment.prod';
 
-const registroUrl = `http://localhost:9000`;
+const registroUrl = `${environment.apiUrl}`;
 
 const requestOptions = {
   headers: new HttpHeaders({

@@ -34,7 +34,6 @@ public class SwaggerConfig {
 	        return new Docket(DocumentationType.SWAGGER_2)
 	                .select()
 	                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-//	                .apis(RequestHandlerSelectors.any())
 	                    .paths(PathSelectors.any())
 	                    .build()
 	                .pathMapping("/")
@@ -51,7 +50,7 @@ public class SwaggerConfig {
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.any())
+                .forPaths(PathSelectors.regex("\\/[a-zA-Z]+\\/.*"))
                 .build();
     }
     

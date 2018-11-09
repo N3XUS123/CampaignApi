@@ -7,14 +7,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.campaing.model.Usuario;
+import com.salesianostriana.campaing.repository.UsuarioRepository;
 import com.salesianostriana.campaing.security.JwtUserFactory;
-import com.salesianostriana.campaing.security.repository.UserRepository;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

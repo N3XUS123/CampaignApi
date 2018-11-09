@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CampaignResponse } from '../_interfaces/campaign.interface';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
-const campaignUrl = `http://localhost:9000`;
+const campaignUrl = `${environment.apiUrl}/campanyas`;
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class CampaignService {
       })
     };
 
-    return this.http.get<CampaignResponse[]>(`${campaignUrl}/listarCampanyas`, requestOptions);
+    return this.http.get<CampaignResponse[]>(`${campaignUrl}/list`, requestOptions);
   }
 
 }

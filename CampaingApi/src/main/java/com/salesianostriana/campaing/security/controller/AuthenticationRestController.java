@@ -23,13 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.salesianostriana.campaing.config.Exceptions;
 import com.salesianostriana.campaing.formbean.RegistroDto;
 import com.salesianostriana.campaing.model.Usuario;
-import com.salesianostriana.campaing.security.JwtAuthenticationRequest;
+import com.salesianostriana.campaing.security.JwtLoginDto;
 import com.salesianostriana.campaing.security.JwtTokenUtil;
 import com.salesianostriana.campaing.security.service.JwtAuthenticationResponse;
 import com.salesianostriana.campaing.service.UsuarioService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 // Controller de logueo
 @RestController
+@Api(tags = "Login Registro", description="REST API DE LOGIN Y REGISTRO")
 public class AuthenticationRestController {
 
 	@Value("${jwt.header}")
@@ -52,7 +56,8 @@ public class AuthenticationRestController {
 
 	// Inicio de sesión
 	@RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest)
+	@ApiOperation(value="Iniciar sesión")
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtLoginDto authenticationRequest)
 			throws AuthenticationException {
 
 		authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
@@ -69,6 +74,7 @@ public class AuthenticationRestController {
 	}
 	
     @PostMapping("/registro")
+    @ApiOperation(value="Registrar nuevo usuario")
     public ResponseEntity<?> createRegistrationToken(@RequestBody RegistroDto nuevoUsuario) throws AuthenticationException, Exceptions {
 
     	if (usuarioService.checkEmailRegistered(nuevoUsuario.getEmail())) {

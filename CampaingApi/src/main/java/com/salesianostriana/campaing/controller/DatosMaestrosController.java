@@ -12,12 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.salesianostriana.campaing.model.DatosMaestros;
 import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
+@Api(tags = "Datos Maestros", description="REST API DE LAS CATEGORIAS DE APORTACIONES")
+@RequestMapping("/datosMaestros/")
 public class DatosMaestrosController {
 	
 	@Autowired
@@ -25,7 +32,8 @@ public class DatosMaestrosController {
 	
 	//Listar
 	@PreAuthorize("hasRole('USER')")
-	@GetMapping("/DatosMaestros/Lista")
+	@GetMapping("/list")
+	@ApiOperation(value="Mostrar listado completo de datos maestros")
 	public ResponseEntity<?> listarDatosMaestros(){
 		return ResponseEntity
 				.status(HttpStatus.ACCEPTED)
@@ -34,7 +42,8 @@ public class DatosMaestrosController {
 	
 	//Añadir
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/DatosMaestros/Aniadir")
+	@PostMapping("/add")
+	@ApiOperation(value="Añadir dato maestro")
 	public ResponseEntity<?> newDatosMaestros(@RequestBody DatosMaestros newDatosMaestros) {
 		DatosMaestros datosMaestros = repo.save(newDatosMaestros);
 
@@ -46,7 +55,8 @@ public class DatosMaestrosController {
 	
 	//Editar
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/DatosMaestros/Editar")
+	@PutMapping("/edit")
+	@ApiOperation(value="Editar dato maestro")
 	public DatosMaestros replaceDatosMaestros(@RequestBody DatosMaestros newDatosMaestros) {
 
 		return repo.findById(newDatosMaestros.getId()).map(datosMaestros -> {
@@ -60,7 +70,8 @@ public class DatosMaestrosController {
 	
 	//Delete
 	@PreAuthorize("hasRole('ADMIN')")
-	@DeleteMapping("/DatosMaestros/Borrar/{id}")
+	@DeleteMapping("/remove/{id}")
+	@ApiOperation(value="Borrar dato maestro")
 	public void deleteDatosMaestros(@PathVariable Long id) {
 		repo.deleteById(id);
 	}

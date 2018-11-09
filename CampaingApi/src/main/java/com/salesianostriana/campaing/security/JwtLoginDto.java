@@ -6,14 +6,14 @@ import lombok.Data;
 
 // PETICIÓN DE LOGIN
 @Data
-public class  JwtAuthenticationRequest implements Serializable {
+public class  JwtLoginDto implements Serializable {
 
     private static final long serialVersionUID = -8445943548965154778L;
 
     private String email;
     private String password;
 
-    public JwtAuthenticationRequest() {}
+    public JwtLoginDto() {}
 
 //    public JwtAuthenticationRequest(String username, String password) {
 //        this.setUsername(username);
