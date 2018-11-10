@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CampaignResponse } from '../_interfaces/campaign.interface';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+import { CampaignsDto } from '../_dto/campaigns.dto';
 
 const campaignUrl = `${environment.apiUrl}/campanyas`;
 
@@ -27,4 +28,15 @@ export class CampaignService {
     return this.http.get<CampaignResponse[]>(`${campaignUrl}/list`, requestOptions);
   }
 
+  eliminarCampanya(campanyaDto: CampaignsDto): Observable<CampaignResponse[]> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    return this.http.delete<CampaignResponse[]>(`${campaignUrl}/remove/{id}`, requestOptions);
+  }
 }

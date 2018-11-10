@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { CampaignService } from '../_services/campaign.service';
 import { CampaignResponse } from '../_interfaces/campaign.interface';
-
+import { CampaignsDto } from '../_dto/campaigns.dto';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +13,10 @@ import { CampaignResponse } from '../_interfaces/campaign.interface';
 export class MainComponent implements OnInit {
   campaigns: CampaignResponse[];
   nombre = localStorage.getItem('username');
+
+  id: number;
+  nombreCampanya: string;
+  codigo: string;
 
 
   constructor(private authService: AuthService, private campaignService: CampaignService, private router: Router) {}
@@ -43,6 +47,12 @@ export class MainComponent implements OnInit {
       return true;
     }
   }
+
+
+  DoEliminarCampanya() {
+    const campaignsDto = new CampaignsDto(this.id, this.nombreCampanya, this.codigo);
+    this.campaignService.eliminarCampanya(campaignsDto);
+}
 
 }
 
