@@ -54,16 +54,15 @@
     </a>
   </li>
   <li>
-    <button mat-button *ngIf="isAdmin()" (click)="showAdmin()">
-      <mat-icon>settings</mat-icon>
-      <span>Administración</span>
-    </button>
+    <a mat-button *ngIf="isAdmin()" (click)="showAdmin()">
+      <mat-icon>settings</mat-icon> Administración
+    </a>
   </li>
   <li class="center">
-    <button mat-button (click)="doLogout()">
-      <mat-icon>power_settings_new</mat-icon>
-      <span>Desconectar</span>
-    </button>
+    <a mat-button (click)="doLogout()">
+      <mat-icon>power_settings_new</mat-icon> Desconectar
+      
+    </a>
   </li>
 </mat-sidenav>
 

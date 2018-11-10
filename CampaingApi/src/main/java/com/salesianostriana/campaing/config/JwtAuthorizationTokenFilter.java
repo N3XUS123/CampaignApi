@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.security;
+package com.salesianostriana.campaing.config;
 
 import java.io.IOException;
 import javax.servlet.FilterChain;

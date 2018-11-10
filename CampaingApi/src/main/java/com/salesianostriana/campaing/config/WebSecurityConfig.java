@@ -19,9 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.salesianostriana.campaing.security.JwtAuthenticationEntryPoint;
-import com.salesianostriana.campaing.security.JwtAuthorizationTokenFilter;
-import com.salesianostriana.campaing.security.service.JwtUserDetailsService;
+import com.salesianostriana.campaing.service.JwtUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

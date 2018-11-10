@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.security;
+package com.salesianostriana.campaing.formbean;
 
 import java.util.Collection;
 

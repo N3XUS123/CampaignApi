@@ -33,9 +33,9 @@ public class Campanya {
 	@JsonIgnore
 	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	@JsonIgnore
-//	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
+	@JsonIgnore
+	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -63,4 +63,34 @@ public class Campanya {
 			this.getAportaciones().remove(a);
 		}
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Campanya other = (Campanya) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+	
+	
 }

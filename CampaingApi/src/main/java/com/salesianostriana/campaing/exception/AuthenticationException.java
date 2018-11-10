@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.security.controller;
+package com.salesianostriana.campaing.exception;
 
 // ENVIA ERRORES EN EL LOGUEO
 public class AuthenticationException extends RuntimeException {

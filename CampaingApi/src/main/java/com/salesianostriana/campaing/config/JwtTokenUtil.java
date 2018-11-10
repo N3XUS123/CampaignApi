@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.security;
+package com.salesianostriana.campaing.config;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +14,8 @@ import io.jsonwebtoken.impl.DefaultClock;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.salesianostriana.campaing.formbean.JwtUser;
 
 // GENERACIÓN DEL TOKEN
 @Component

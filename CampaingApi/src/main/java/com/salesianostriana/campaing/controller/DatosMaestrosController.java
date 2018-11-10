@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.salesianostriana.campaing.formbean.DatosMaestrosDto;
 import com.salesianostriana.campaing.model.DatosMaestros;
-import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
+import com.salesianostriana.campaing.service.DatosMaestrosService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 public class DatosMaestrosController {
 	
 	@Autowired
-	private DatosMaestrosRepository repo;
+	private DatosMaestrosService datosMaestrosService;
 	
 	//Listar
 	@PreAuthorize("hasRole('USER')")
@@ -37,15 +38,15 @@ public class DatosMaestrosController {
 	public ResponseEntity<?> listarDatosMaestros(){
 		return ResponseEntity
 				.status(HttpStatus.ACCEPTED)
-				.body(repo.findAll());
+				.body(datosMaestrosService.findAll());
 	}
 	
 	//Añadir
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/add")
 	@ApiOperation(value="Añadir dato maestro")
-	public ResponseEntity<?> newDatosMaestros(@RequestBody DatosMaestros newDatosMaestros) {
-		DatosMaestros datosMaestros = repo.save(newDatosMaestros);
+	public ResponseEntity<?> newDatosMaestros(@RequestBody DatosMaestrosDto newDatosMaestros) {
+		DatosMaestros datosMaestros = datosMaestrosService.save(newDatosMaestros);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(datosMaestros.getId())
 				.toUri();
@@ -57,15 +58,15 @@ public class DatosMaestrosController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/edit")
 	@ApiOperation(value="Editar dato maestro")
-	public DatosMaestros replaceDatosMaestros(@RequestBody DatosMaestros newDatosMaestros) {
+	public ResponseEntity<?> replaceDatosMaestros(@RequestBody DatosMaestrosDto newDatosMaestros) {
 
-		return repo.findById(newDatosMaestros.getId()).map(datosMaestros -> {
-			datosMaestros.setTipo(newDatosMaestros.getTipo());
-			datosMaestros.setCampanya(newDatosMaestros.getCampanya());
-			return repo.save(datosMaestros);
+		DatosMaestros updated = datosMaestrosService.findById(newDatosMaestros.getId()).map(datosMaestros -> {
+			return datosMaestrosService.save(newDatosMaestros);
 		}).orElseGet(() -> {
-			return repo.save(newDatosMaestros);
+			return datosMaestrosService.save(newDatosMaestros);
 		});
+		
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(updated);
 	}
 	
 	//Delete
@@ -73,7 +74,7 @@ public class DatosMaestrosController {
 	@DeleteMapping("/remove/{id}")
 	@ApiOperation(value="Borrar dato maestro")
 	public void deleteDatosMaestros(@PathVariable Long id) {
-		repo.deleteById(id);
+		datosMaestrosService.deleteById(id);
 	}
 
 	

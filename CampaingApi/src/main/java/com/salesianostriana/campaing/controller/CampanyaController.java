@@ -17,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salesianostriana.campaing.formbean.CampanyaDto;
 import com.salesianostriana.campaing.model.Campanya;
-import com.salesianostriana.campaing.repository.CampanyaRepository;
 import com.salesianostriana.campaing.service.CampanyaService;
 
 import io.swagger.annotations.Api;
@@ -27,12 +26,9 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "Campañas", description="REST API DE LAS CAMPAÑAS")
 @RequestMapping("/campanyas")
 public class CampanyaController {
-
-	@Autowired
-	private CampanyaRepository repository;
 	
 	@Autowired
-	private CampanyaService service;
+	private CampanyaService campanyaService;
 	
 	//Listar
 		@PreAuthorize("hasRole('USER')")
@@ -41,7 +37,7 @@ public class CampanyaController {
 		public ResponseEntity<?> listarCampanyas(){
 			return ResponseEntity
 					.status(HttpStatus.ACCEPTED)
-					.body(repository.findAll());
+					.body(campanyaService.findAll());
 		}
 	
 		//Añadir
@@ -49,7 +45,7 @@ public class CampanyaController {
 		@PostMapping("/new")
 		@ApiOperation(value="Añadir una nueva campaña")
 		public ResponseEntity<?> newCampanya(@RequestBody CampanyaDto newCampanya) {
-			Campanya c = service.save(newCampanya);
+			Campanya c = campanyaService.save(newCampanya);
 
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(c.getId())
 					.toUri();
@@ -61,10 +57,10 @@ public class CampanyaController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@ApiOperation(value="Borrar una campaña")
 	public ResponseEntity<?> deleteCampanya(@PathVariable Long id) {
-		repository.deleteById(id);
+		campanyaService.deleteById(id);
 
 		return ResponseEntity
 				.status(HttpStatus.ACCEPTED)
-				.body(repository.findAll());
+				.body(campanyaService.findAll());
 	}
 }

@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.security;
+package com.salesianostriana.campaing.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import com.salesianostriana.campaing.formbean.JwtUser;
 import com.salesianostriana.campaing.model.Authorities;
 import com.salesianostriana.campaing.model.Usuario;
 

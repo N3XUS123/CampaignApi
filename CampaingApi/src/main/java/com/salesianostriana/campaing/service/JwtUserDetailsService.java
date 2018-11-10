@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.security.service;
+package com.salesianostriana.campaing.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.UsuarioRepository;
-import com.salesianostriana.campaing.security.JwtUserFactory;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {

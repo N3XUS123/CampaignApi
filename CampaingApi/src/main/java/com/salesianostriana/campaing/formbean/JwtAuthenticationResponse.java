@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.security.service;
+package com.salesianostriana.campaing.formbean;
 
 import java.io.Serializable;
 

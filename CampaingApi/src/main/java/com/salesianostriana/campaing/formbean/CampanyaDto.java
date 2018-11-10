@@ -8,4 +8,6 @@ public class CampanyaDto {
 
 	private String nombreCampanya;
 	private String codigo;
+	private boolean unido;
+	
 }
