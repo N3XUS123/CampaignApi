@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.formbean;
+package com.salesianostriana.campaing.response;
 
 import java.io.Serializable;
 

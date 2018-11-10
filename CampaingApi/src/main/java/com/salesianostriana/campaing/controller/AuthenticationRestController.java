@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salesianostriana.campaing.config.Exceptions;
-import com.salesianostriana.campaing.config.JwtTokenUtil;
 import com.salesianostriana.campaing.exception.AuthenticationException;
-import com.salesianostriana.campaing.formbean.JwtAuthenticationResponse;
+import com.salesianostriana.campaing.exception.Exceptions;
 import com.salesianostriana.campaing.formbean.JwtLoginDto;
 import com.salesianostriana.campaing.formbean.RegistroDto;
 import com.salesianostriana.campaing.model.Usuario;
+import com.salesianostriana.campaing.response.JwtAuthenticationResponse;
+import com.salesianostriana.campaing.security.JwtTokenUtil;
 import com.salesianostriana.campaing.service.UsuarioService;
 
 import io.swagger.annotations.Api;

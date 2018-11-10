@@ -72,7 +72,7 @@
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{item.nombreCampanya}}</mat-card-title>
-      <mat-card-subtitle>Codigo: {{item.codigo}}</mat-card-subtitle>
+      <mat-card-subtitle>Codigo: {{item.codigo}} - Unido: {{(item.unido)? 'Sí' : 'No'}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
       <button mat-button (click)="DoEliminarCampanya(item.id)" *ngIf="isAdmin()">

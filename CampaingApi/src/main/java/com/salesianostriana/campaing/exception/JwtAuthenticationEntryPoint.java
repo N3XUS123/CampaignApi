@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.config;
+package com.salesianostriana.campaing.exception;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

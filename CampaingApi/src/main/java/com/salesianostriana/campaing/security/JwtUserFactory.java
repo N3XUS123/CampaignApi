@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.service;
+package com.salesianostriana.campaing.security;
 
 import java.util.List;
 import java.util.stream.Collectors;

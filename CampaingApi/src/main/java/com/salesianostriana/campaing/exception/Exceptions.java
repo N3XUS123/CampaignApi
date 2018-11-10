@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.config;
+package com.salesianostriana.campaing.exception;
 
 public class Exceptions extends Exception {
 	
