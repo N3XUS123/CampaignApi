@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salesianostriana.campaing.model.Campanya;
+import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.security.JwtAuthorizationTokenFilter;
 import com.salesianostriana.campaing.service.CampanyaService;
 import com.salesianostriana.campaing.service.UsuarioService;
@@ -73,6 +74,16 @@ public class CampanyaController {
 	public ResponseEntity<?> deleteCampanya(@PathVariable Long id) {
 		campanyaService.deleteById(id);
 
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(campanyaService.findAll());
+	}
+
+	@PreAuthorize("hasRole('USER')")
+	@PostMapping("/join")
+	@ApiOperation(value = "Unirse a una campaña")
+	public ResponseEntity<?> joinCampaign(HttpServletRequest request, String code) {
+		Usuario u = uService.findByEmail(tokenFilter.returnUsernameFromToken(request));
+		u.joinCampaign(campanyaService.findByCode(code));
+		uService.edit(u);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(campanyaService.findAll());
 	}
 }

@@ -56,5 +56,9 @@ public class CampanyaService {
 		}
 		return cResp;
 	}
+	
+	public Campanya findByCode(String code) {
+		return repository.findFirstByCodigo(code);
+	}
 		
 }

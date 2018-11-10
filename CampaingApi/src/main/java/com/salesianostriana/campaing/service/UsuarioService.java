@@ -45,5 +45,9 @@ public class UsuarioService {
 		
 		return false;	
 	}
+
+	public Usuario edit(Usuario u) {
+		return repository.save(u);		
+	}
 	
 }

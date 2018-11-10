@@ -11,10 +11,13 @@
     <a routerLink="/main/mine" mat-button>
       <mat-icon>collections_bookmark</mat-icon> Mis campañas
     </a>
-    <a routerLink="/addCampaign" mat-button>
-      <mat-icon>add_to_photos</mat-icon> Unirse a campaña
-    </a>
     <div id="navbar-right">
+      <mat-form-field class="addCampaignForm">
+        <input matInput placeholder="Unirse a campaña">
+      </mat-form-field>
+      <a routerLink="/addCampaign" mat-button>
+        <mat-icon>add_to_photos</mat-icon>
+      </a>
       <button mat-button *ngIf="isAdmin()">
         <mat-icon>settings</mat-icon>
         <span>Administración</span>
@@ -61,7 +64,7 @@
   <li class="center">
     <a mat-button (click)="doLogout()">
       <mat-icon>power_settings_new</mat-icon> Desconectar
-      
+
     </a>
   </li>
 </mat-sidenav>

@@ -43,7 +43,7 @@ mat-toolbar {
 }
 
 @media (max-width: 999px) {
-  mat-toolbar-row .mat-button {
+  mat-toolbar-row .mat-button, mat-toolbar-row mat-form-field {
     display:none;
   }
 }
@@ -56,6 +56,11 @@ mat-toolbar {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.addCampaignForm {
+  font-size: 14px;
+  width: 115px;
 }
 
 a.mat-button {
