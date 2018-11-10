@@ -33,9 +33,9 @@ public class Campanya {
 	@JsonIgnore
 	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JsonIgnore
+//	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore

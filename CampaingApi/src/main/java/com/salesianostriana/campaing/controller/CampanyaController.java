@@ -63,6 +63,8 @@ public class CampanyaController {
 	public ResponseEntity<?> deleteCampanya(@PathVariable Long id) {
 		repository.deleteById(id);
 
-		return ResponseEntity.noContent().build();
+		return ResponseEntity
+				.status(HttpStatus.ACCEPTED)
+				.body(repository.findAll());
 	}
 }

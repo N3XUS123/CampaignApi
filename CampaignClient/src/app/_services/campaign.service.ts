@@ -12,6 +12,7 @@ const campaignUrl = `${environment.apiUrl}/campanyas`;
 })
 
 export class CampaignService {
+
   token = localStorage.getItem('token');
 
   constructor(private http: HttpClient) { }
@@ -28,7 +29,7 @@ export class CampaignService {
     return this.http.get<CampaignResponse[]>(`${campaignUrl}/list`, requestOptions);
   }
 
-  eliminarCampanya(campanyaDto: CampaignsDto): Observable<CampaignResponse[]> {
+  eliminarCampanya(id: number): Observable<CampaignResponse[]> {
     const requestOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`,
@@ -36,7 +37,6 @@ export class CampaignService {
         'Access-Control-Allow-Origin': '*'
       })
     };
-
-    return this.http.delete<CampaignResponse[]>(`${campaignUrl}/remove/{id}`, requestOptions);
+    return this.http.delete<CampaignResponse[]>(`${campaignUrl}/remove/${id}`, requestOptions);
   }
 }

@@ -49,10 +49,11 @@ export class MainComponent implements OnInit {
   }
 
 
-  DoEliminarCampanya() {
-    const campaignsDto = new CampaignsDto(this.id, this.nombreCampanya, this.codigo);
-    this.campaignService.eliminarCampanya(campaignsDto);
+  DoEliminarCampanya(id) {
+    this.campaignService.eliminarCampanya(id).subscribe(campaignList => {
+        this.campaigns = campaignList;
+      }, error => {
+        console.log('Error.');
+      });
+    }
 }
-
-}
-
