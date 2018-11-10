@@ -54,3 +54,20 @@
   button.mat-raised-button:nth-child(1){
     margin-right: 4%;
   }
+
+  #logo {
+    background-image: url('../../images/logo2.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15%;
+    height: 15vh;
+    margin: 3% auto 0px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    #logo {
+      width: 300px;
+      height: 100px;
+    }
+  }
