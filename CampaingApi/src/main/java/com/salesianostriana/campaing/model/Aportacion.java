@@ -50,5 +50,23 @@ public class Aportacion {
 		this.datosMaestros = datosMaestros;
 	}
 	
+	public void addCampanya(Campanya c) {
+		this.setCampanya(c);
+		c.getAportaciones().add(this);
+	}
+
+	public void removeCampanya(Campanya c) {
+		this.setCampanya(null);
+		c.getAportaciones().remove(this);
+	}
+
+	public Aportacion(String dato, double cantidad, LocalDateTime fecha, Usuario usuario) {
+		super();
+		this.dato = dato;
+		this.cantidad = cantidad;
+		this.fecha = fecha;
+		this.usuario = usuario;
+	}
+
 	
 }
