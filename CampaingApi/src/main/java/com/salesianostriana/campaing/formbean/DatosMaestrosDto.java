@@ -9,4 +9,11 @@ public class DatosMaestrosDto {
 	private String tipo;
 	private long id_campanya;
 	
+	public DatosMaestrosDto(String tipo, long id_campanya) {
+		this.tipo = tipo;
+		this.id_campanya = id_campanya;
+	}
+	
+	
+	
 }

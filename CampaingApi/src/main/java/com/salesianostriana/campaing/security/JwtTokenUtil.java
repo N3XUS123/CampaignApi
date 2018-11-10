@@ -1,4 +1,4 @@
-package com.salesianostriana.campaing.config;
+package com.salesianostriana.campaing.security;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,7 +21,7 @@ import com.salesianostriana.campaing.formbean.JwtUser;
 @Component
 public class JwtTokenUtil implements Serializable {
 
-    static final String CLAIM_KEY_USERNAME = "Username";
+    static final String CLAIM_KEY_USERNAME = "sub";
     static final String CLAIM_KEY_CREATED = "iat";
     private static final long serialVersionUID = -3301605591108950415L;
     private Clock clock = DefaultClock.INSTANCE;
@@ -57,13 +57,13 @@ public class JwtTokenUtil implements Serializable {
     }
 
     private Boolean isTokenExpired(String token) {
-        final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(clock.now());
+        final Date expirationDate = getExpirationDateFromToken(token);
+        return expirationDate.before(clock.now());
     }
 
     private Boolean ignoreTokenExpiration(String token) {
         // here you specify tokens, for that the expiration is ignored
-        return true;
+        return false;
     }
 
     public String generateToken(UserDetails userDetails) {
@@ -73,11 +73,13 @@ public class JwtTokenUtil implements Serializable {
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         final Date createdDate = clock.now();
+        final Date expirationDate = new Date(createdDate.getTime() + expiration);
 
         return Jwts.builder()
             .setClaims(claims)
             .setSubject(subject)
             .setIssuedAt(createdDate)
+            .setExpiration(expirationDate)
             .signWith(SignatureAlgorithm.HS512, secret)
             .compact();
     }

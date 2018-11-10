@@ -44,7 +44,7 @@ public class Usuario {
 	@OneToMany
 	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Campanya> campanyas = new HashSet<Campanya>();
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
@@ -72,6 +72,23 @@ public class Usuario {
 	public Usuario removeRole(Authorities a) {
 		if (a != null) {
 			a.setUser(null);
+			this.getAuthorities().remove(a);
+		}
+		return this;
+	}
+
+	public Usuario joinCampaign(Campanya c) {
+		if (c != null) {
+			c.getUsuario().add(this);
+			this.getCampanyas().add(c);
+		}
+		return this;
+	}
+
+	public Usuario exitCampaign(Campanya c) {
+		if (c != null) {
+			c.getUsuario().remove(this);
+			this.getCampanyas().remove(c);
 		}
 		return this;
 	}

@@ -37,7 +37,7 @@ public class Campanya {
 	@JsonIgnore
 	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "campanyas")
 	@JsonIgnore
 	private Set<Usuario> usuario = new HashSet<Usuario>();
 
