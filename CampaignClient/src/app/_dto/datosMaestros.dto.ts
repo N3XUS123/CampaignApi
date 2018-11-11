@@ -1,9 +1,9 @@
 export class DatoCreateDto {
     tipo: string;
-    idCampanya: number;
+    id_campanya: number;
 
     constructor(t: string, c: number) {
         this.tipo = t;
-        this.idCampanya = c;
+        this.id_campanya = c;
     }
 }
