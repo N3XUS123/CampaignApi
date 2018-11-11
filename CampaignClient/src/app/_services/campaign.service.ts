@@ -14,29 +14,25 @@ const campaignUrl = `${environment.apiUrl}/campanyas`;
 export class CampaignService {
 
   token = localStorage.getItem('token');
+  requestOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`,
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
   getCampaigns(): Observable<CampaignResponse[]> {
-    const requestOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.token}`,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-
-    return this.http.get<CampaignResponse[]>(`${campaignUrl}/list`, requestOptions);
+    return this.http.get<CampaignResponse[]>(`${campaignUrl}/list`, this.requestOptions);
   }
 
   eliminarCampanya(id: number): Observable<CampaignResponse[]> {
-    const requestOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.token}`,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-    return this.http.delete<CampaignResponse[]>(`${campaignUrl}/remove/${id}`, requestOptions);
+    return this.http.delete<CampaignResponse[]>(`${campaignUrl}/remove/${id}`, this.requestOptions);
+  }
+
+  joinCampaign(code: String): Observable<CampaignResponse[]> {
+    return this.http.post<CampaignResponse[]>(`${campaignUrl}/join`, code, this.requestOptions);
   }
 }

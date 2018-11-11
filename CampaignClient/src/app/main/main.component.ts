@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { CampaignService } from '../_services/campaign.service';
@@ -14,9 +14,10 @@ export class MainComponent implements OnInit {
   campaigns: CampaignResponse[];
   nombre = localStorage.getItem('username');
 
-  id: number;
-  nombreCampanya: string;
-  codigo: string;
+  id: Number;
+  nombreCampanya: String;
+  codigo: String;
+  campaignInput: String;
 
 
   constructor(private authService: AuthService, private campaignService: CampaignService, private router: Router) {}
@@ -48,10 +49,19 @@ export class MainComponent implements OnInit {
     }
   }
 
-
   DoEliminarCampanya(id) {
     this.campaignService.eliminarCampanya(id).subscribe(campaignList => {
         this.campaigns = campaignList;
+      }, error => {
+        console.log('Error.');
+      });
+    }
+
+    joinCampaign() {
+      this.campaignService.joinCampaign(this.campaignInput).subscribe(campaignList => {
+        this.campaigns = campaignList;
+        window.location.reload();
+
       }, error => {
         console.log('Error.');
       });
