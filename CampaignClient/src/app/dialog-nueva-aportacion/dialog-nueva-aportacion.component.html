@@ -1,0 +1,11 @@
+<div fxLayout="column" fFlexFill>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Dato" [(ngModel)]="dato">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Cantidad" [(ngModel)]="cantidad"></textarea>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="addAportacion()">Añadir aportación</button>
+  </div>
