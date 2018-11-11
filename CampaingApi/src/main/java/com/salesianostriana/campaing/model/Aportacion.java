@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -27,16 +29,19 @@ public class Aportacion {
 	private LocalDateTime fecha;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Usuario usuario;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Campanya campanya;
 	
 	@ManyToOne
+	@JsonIgnore
 	private DatosMaestros datosMaestros;
 
 	public Aportacion() {
-		super();
+		
 	}
 
 	public Aportacion(String dato, double cantidad, Usuario usuario, Campanya campanya,
@@ -60,11 +65,10 @@ public class Aportacion {
 		c.getAportaciones().remove(this);
 	}
 
-	public Aportacion(String dato, double cantidad, LocalDateTime fecha, Usuario usuario) {
+	public Aportacion(String dato, double cantidad, Usuario usuario) {
 		super();
 		this.dato = dato;
 		this.cantidad = cantidad;
-		this.fecha = fecha;
 		this.usuario = usuario;
 	}
 
