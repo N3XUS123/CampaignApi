@@ -39,12 +39,12 @@ public class Aportacion {
 		super();
 	}
 
-	public Aportacion(String dato, double cantidad, LocalDateTime fecha, Usuario usuario, Campanya campanya,
+	public Aportacion(String dato, double cantidad, Usuario usuario, Campanya campanya,
 			DatosMaestros datosMaestros) {
 		super();
 		this.dato = dato;
 		this.cantidad = cantidad;
-		this.fecha = fecha;
+		this.fecha = LocalDateTime.now();
 		this.usuario = usuario;
 		this.campanya = campanya;
 		this.datosMaestros = datosMaestros;
@@ -68,5 +68,23 @@ public class Aportacion {
 		this.usuario = usuario;
 	}
 
+	public void addDatosMaestros(DatosMaestros d) {
+		this.setDatosMaestros(d);
+		d.getAportaciones().add(this);
+	}
+
+	public void removeDatosMaestros(DatosMaestros d) {
+		this.setDatosMaestros(null);
+		d.getAportaciones().remove(this);
+	}
 	
+	public void addUsuario(Usuario u) {
+		this.setUsuario(u);
+		u.getAportaciones().add(this);
+	}
+
+	public void removeUsuario(Usuario u) {
+		this.setUsuario(null);
+		u.getAportaciones().remove(this);
+	}
 }
