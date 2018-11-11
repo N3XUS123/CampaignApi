@@ -4,9 +4,9 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Campaña" [(value)]="campaigns">
-      <mat-option *ngFor="let campanya of campaigns" [value]="campaigns">
-        {{campanya}}
+    <mat-select placeholder="Campaña" [(value)]="campanya">
+      <mat-option *ngFor="let c of campaigns" [value]="c.id">
+        {{c.nombreCampanya}}
       </mat-option>
     </mat-select>
   </mat-form-field>

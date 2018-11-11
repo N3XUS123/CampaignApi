@@ -1,9 +1,9 @@
 export class DatoMaestro {
     tipo: string;
-    campanya: string;
+    id_campanya: number;
 
-    constructor(t: string, c: string) {
+    constructor(t: string, c: number) {
         this.tipo = t;
-        this.campanya = c;
+        this.id_campanya = c;
     }
 }
