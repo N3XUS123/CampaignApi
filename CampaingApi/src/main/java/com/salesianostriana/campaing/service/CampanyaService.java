@@ -14,14 +14,14 @@ import com.salesianostriana.campaing.response.CampanyaResponse;
 
 @Service
 public class CampanyaService {
-	
+
 	@Autowired
 	private CampanyaRepository repository;
-	
+
 	public Campanya save(Campanya nuevaCampanya) {
 		return repository.save(nuevaCampanya);
 	}
-	
+
 	public void deleteById(Long id) {
 		Campanya c = repository.findById(id).orElse(null);
 		for (Usuario u : c.getUsuario()) {
@@ -44,25 +44,38 @@ public class CampanyaService {
 	public List<Campanya> findAll() {
 		return repository.findAll();
 	}
-	
+
 	private boolean checkUnido(Campanya c, Usuario u) {
 		boolean unido = false;
 		if (c.getUsuario().contains(u))
 			unido = true;
 		return unido;
 	}
-	
+
 	public List<CampanyaResponse> findAll(Usuario u) {
 		List<CampanyaResponse> cResp = new ArrayList<CampanyaResponse>();
-		for (Campanya i: repository.findAll()) {
-			CampanyaResponse c = new CampanyaResponse(i.getId(), i.getNombreCampanya(), i.getCodigo(), checkUnido(i, u));
+		for (Campanya i : repository.findAll()) {
+			CampanyaResponse c = new CampanyaResponse(i.getId(), i.getNombreCampanya(), i.getCodigo(),
+					checkUnido(i, u));
 			cResp.add(c);
 		}
 		return cResp;
 	}
-	
+
+	public List<CampanyaResponse> findAllMine(Usuario u) {
+		List<CampanyaResponse> cResp = new ArrayList<CampanyaResponse>();
+		for (Campanya i : repository.findAll()) {
+			if (i.getUsuario().contains(u)) {
+				CampanyaResponse c = new CampanyaResponse(i.getId(), i.getNombreCampanya(), i.getCodigo(),
+						checkUnido(i, u));
+				cResp.add(c);
+			}
+		}
+		return cResp;
+	}
+
 	public Campanya findByCode(String code) {
 		return repository.findFirstByCodigo(code);
 	}
-		
+
 }

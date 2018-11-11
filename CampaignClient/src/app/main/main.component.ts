@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { CampaignService } from '../_services/campaign.service';
 import { CampaignResponse } from '../_interfaces/campaign.interface';
-import { CampaignsDto } from '../_dto/campaigns.dto';
 
 @Component({
   selector: 'app-main',
@@ -51,19 +50,27 @@ export class MainComponent implements OnInit {
 
   DoEliminarCampanya(id) {
     this.campaignService.eliminarCampanya(id).subscribe(campaignList => {
-        this.campaigns = campaignList;
-      }, error => {
-        console.log('Error.');
-      });
-    }
+      this.campaigns = campaignList;
+    }, error => {
+      console.log('Error.');
+    });
+  }
 
-    joinCampaign() {
-      this.campaignService.joinCampaign(this.campaignInput).subscribe(campaignList => {
-        this.campaigns = campaignList;
-        window.location.reload();
+  joinCampaign() {
+    this.campaignService.joinCampaign(this.campaignInput).subscribe(campaignList => {
+      this.campaigns = campaignList;
+      window.location.reload();
 
-      }, error => {
-        console.log('Error.');
-      });
-    }
+    }, error => {
+      console.log('Error.');
+    });
+  }
+
+  showMine() {
+    this.campaignService.getJoinedCampaigns().subscribe(campaignList => {
+      this.campaigns = campaignList;
+    }, error => {
+      console.log('Error. No recibe datos.');
+    });
+  }
 }

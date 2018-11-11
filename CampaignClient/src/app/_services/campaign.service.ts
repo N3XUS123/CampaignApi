@@ -28,6 +28,10 @@ export class CampaignService {
     return this.http.get<CampaignResponse[]>(`${campaignUrl}/list`, this.requestOptions);
   }
 
+  getJoinedCampaigns(): Observable<CampaignResponse[]> {
+    return this.http.get<CampaignResponse[]>(`${campaignUrl}/list/mine`, this.requestOptions);
+  }
+
   eliminarCampanya(id: number): Observable<CampaignResponse[]> {
     return this.http.delete<CampaignResponse[]>(`${campaignUrl}/remove/${id}`, this.requestOptions);
   }

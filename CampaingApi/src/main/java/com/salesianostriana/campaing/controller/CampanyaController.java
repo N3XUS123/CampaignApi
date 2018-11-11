@@ -55,6 +55,13 @@ public class CampanyaController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
 				.body(campanyaService.findAll(uService.findByEmail(tokenFilter.returnUsernameFromToken(request))));
 	}
+	
+	@GetMapping("/list/mine")
+	@ApiOperation(value = "Mostrar listado completo de campañas unidas por el usuario")
+	public ResponseEntity<?> listarMisCampanyas(HttpServletRequest request) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED)
+				.body(campanyaService.findAllMine(uService.findByEmail(tokenFilter.returnUsernameFromToken(request))));
+	}
 
 	// Añadir
 	@PreAuthorize("hasRole('ADMIN')")

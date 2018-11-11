@@ -5,10 +5,10 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div mat-card-avatar class="navbar-logo"></div>
-    <a routerLink="/main" mat-button>
+    <a mat-button (click)="showData()">
       <mat-icon>collections</mat-icon> Campañas
     </a>
-    <a routerLink="/main/mine" mat-button>
+    <a mat-button (click)="showMine()">
       <mat-icon>collections_bookmark</mat-icon> Mis campañas
     </a>
     <div id="navbar-right">
