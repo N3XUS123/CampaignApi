@@ -27,7 +27,7 @@ public class AportacionService {
 	private UsuarioRepository uRepo;
 	
 	public Aportacion save(AportacionDto nuevaAportacion, Usuario u) {
-		Aportacion a = new Aportacion(nuevaAportacion.getDato(), nuevaAportacion.getCantidad(), nuevaAportacion.getFecha(), u);
+		Aportacion a = new Aportacion(nuevaAportacion.getDato(), nuevaAportacion.getCantidad(), u);
 		a.addCampanya(cRepo.findById(nuevaAportacion.getIdCampanya()).orElse(null));
 		a.addDatosMaestros(dRepo.findById(nuevaAportacion.getIdDatosMaestro()).orElse(null));
 		a.addUsuario(uRepo.findById(nuevaAportacion.getIdUsuario()).orElse(null));

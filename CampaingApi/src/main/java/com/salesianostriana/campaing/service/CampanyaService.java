@@ -23,7 +23,11 @@ public class CampanyaService {
 	}
 	
 	public void deleteById(Long id) {
-		repository.deleteById(id);
+		Campanya c = repository.findById(id).orElse(null);
+		for (Usuario u : c.getUsuario()) {
+			u.exitCampaign(c);
+		}
+		repository.delete(c);
 	}
 
 //	public List<CampanyaResponse> findAll() {

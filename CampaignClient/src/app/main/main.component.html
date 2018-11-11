@@ -13,9 +13,9 @@
     </a>
     <div id="navbar-right">
       <mat-form-field class="addCampaignForm">
-        <input matInput placeholder="Unirse a campaña">
+        <input matInput placeholder="Unirse a campaña" [(ngModel)]="campaignInput" name="campaignInput"> 
       </mat-form-field>
-      <a routerLink="/addCampaign" mat-button>
+      <a mat-button (click)="joinCampaign()">
         <mat-icon>add_to_photos</mat-icon>
       </a>
       <button mat-button *ngIf="isAdmin()">
