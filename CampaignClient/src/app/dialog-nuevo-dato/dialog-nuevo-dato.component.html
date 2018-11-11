@@ -4,8 +4,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Campaña" [(value)]="campanya">
-      <mat-option *ngFor="let color of colors" [value]="campanya">
+    <mat-select placeholder="Campaña" [(value)]="campaigns">
+      <mat-option *ngFor="let campanya of campaigns" [value]="campaigns">
         {{campanya}}
       </mat-option>
     </mat-select>

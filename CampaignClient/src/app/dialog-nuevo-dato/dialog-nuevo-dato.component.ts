@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { DatosService } from "../_services/datosMaestros.service";
 import { DatoMaestro } from "../_models/datoMaestro";
+import { CampaignResponse } from "../_interfaces/campaign.interface";
 
 @Component({
     selector: 'app-dialog-nuevo-dato',
@@ -10,7 +11,7 @@ import { DatoMaestro } from "../_models/datoMaestro";
   })
   export class DialogNuevoDatoComponent implements OnInit {
     tipo: string;
-    campanya: string;
+    campaigns: CampaignResponse[];
   
     constructor(private datosService: DatosService,
       public dialogRef: MatDialogRef<DialogNuevoDatoComponent>) { }
@@ -21,8 +22,8 @@ import { DatoMaestro } from "../_models/datoMaestro";
     addDato() {
       const datoCreate = new DatoMaestro(this.tipo, this.campanya);
       this.datosService.createDato(datoCreate).subscribe(
-        note => {
-          this.dialogRef.close();
+        dato => {
+          this.dialogRef.close(dato);
         }
       );
     }

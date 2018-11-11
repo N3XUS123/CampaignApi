@@ -13,7 +13,7 @@ export class DatosMaestrosComponent{
   displayedColumns: string[] = ['numero', 'tipo', 'campanya', 'acciones'];
   dataSource: Datos[];
 
-  constructor(private noteService: DatosService,
+  constructor(private datosMaestrosService: DatosService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
@@ -22,7 +22,7 @@ export class DatosMaestrosComponent{
   }
 
   getListaDatos(mensaje: string) {
-    this.noteService.getAllDatos().subscribe(listaDatos => {
+    this.datosMaestrosService.getAllDatos().subscribe(listaDatos => {
       this.dataSource = listaDatos;
 
       this.snackBar.open(mensaje, 'Cerrar', {
