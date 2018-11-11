@@ -80,7 +80,7 @@ public class CampanyaController {
 	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/join")
 	@ApiOperation(value = "Unirse a una campaña")
-	public ResponseEntity<?> joinCampaign(HttpServletRequest request, String code) {
+	public ResponseEntity<?> joinCampaign(@RequestBody String code, HttpServletRequest request) {
 		Usuario u = uService.findByEmail(tokenFilter.returnUsernameFromToken(request));
 		u.joinCampaign(campanyaService.findByCode(code));
 		uService.edit(u);
