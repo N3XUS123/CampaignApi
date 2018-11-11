@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.salesianostriana.campaing.formbean.AportacionDto;
 import com.salesianostriana.campaing.model.Aportacion;
 import com.salesianostriana.campaing.model.Usuario;
@@ -41,10 +40,9 @@ public class AportacionController {
 	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/nuevaAportacion")
 	@ApiOperation(value="Añadir una nueva aportación")
-	@JsonView()
 	public ResponseEntity<?> newAportacion(HttpServletRequest request, @RequestBody AportacionDto nuevaAportacion) {
 		Usuario u = uService.findByEmail(tokenFilter.returnUsernameFromToken(request));
-		Aportacion a = aService.save(nuevaAportacion, u);
+		Aportacion a = aService.save(nuevaAportacion);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(a.getId())
 				.toUri();
