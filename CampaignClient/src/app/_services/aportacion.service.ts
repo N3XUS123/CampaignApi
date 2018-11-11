@@ -25,3 +25,4 @@ export class AportacionService {
 
     return this.http.post<AportacionCreateResponse>(`${aportacionUrl}/nuevaAportacion`, aportacionCreateDto, requestOptions);
   }
+}
