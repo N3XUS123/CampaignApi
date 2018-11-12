@@ -1,8 +1,8 @@
 package com.salesianostriana.campaing.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,57 +27,20 @@ public class DatosMaestros {
 	@Column(name = "TIPO")
 	private String tipo;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="datosMaestros")
 	@JsonIgnore
-	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
+	private Set<Aportacion> aportaciones;
 	
-	@ManyToOne
+	@ManyToOne(optional=false, targetEntity=Campanya.class)
 	@JsonIgnore
 	private Campanya campanya;
 
 	public DatosMaestros() {
 	}
 
-	public DatosMaestros(String tipo) {
+	public DatosMaestros(String tipo, Campanya campanya) {
 		this.tipo = tipo;
+		this.campanya = campanya;
 	}
-
-	public void addCampanya(Campanya c) {
-		this.setCampanya(c);
-		c.getDatosMaestros().add(this);
-	}
-
-	public void removeCampanya(Campanya c) {
-		c.getDatosMaestros().remove(this);
-		this.setCampanya(null);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DatosMaestros other = (DatosMaestros) obj;
-		if (id != other.id)
-			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
-				return false;
-		} else if (!tipo.equals(other.tipo))
-			return false;
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
-		return result;
-	}
-
+	
 }

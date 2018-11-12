@@ -41,7 +41,7 @@ public class Usuario {
 	@Column(name = "ENABLED")
 	private Boolean enabled;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="usuario", orphanRemoval=true)
 	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
 
 	@ManyToMany(cascade = CascadeType.ALL)

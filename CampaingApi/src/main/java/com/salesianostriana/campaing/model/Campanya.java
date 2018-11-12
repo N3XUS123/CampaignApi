@@ -1,6 +1,5 @@
 package com.salesianostriana.campaing.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -29,17 +28,17 @@ public class Campanya {
 	@Column(name="CODIGO")
 	private String codigo;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="campanya", targetEntity=Aportacion.class)
 	@JsonIgnore
-	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
+	private Set<Aportacion> aportaciones;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="campanya", targetEntity=DatosMaestros.class)
 	@JsonIgnore
-	private Set<DatosMaestros> datosMaestros = new HashSet<DatosMaestros>();
+	private Set<DatosMaestros> datosMaestros;
 	
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "campanyas")
+	@ManyToMany(mappedBy = "campanyas")
 	@JsonIgnore
-	private Set<Usuario> usuario = new HashSet<Usuario>();
+	private Set<Usuario> usuario;
 
 	public Campanya() {
 		super();
@@ -49,48 +48,5 @@ public class Campanya {
 		this.nombreCampanya = nombreCampanya;
 		this.codigo = codigo;
 	}
-	
-	public void addAportacion(Aportacion a) {
-		if (a != null) {
-			a.setCampanya(this);
-			this.getAportaciones().add(a);
-		}
-	}
-	
-	public void removeAportacion(Aportacion a) {
-		if (a != null) {
-			a.setCampanya(null);
-			this.getAportaciones().remove(a);
-		}
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Campanya other = (Campanya) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
-				return false;
-		} else if (!codigo.equals(other.codigo))
-			return false;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
-	
 	
 }

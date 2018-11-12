@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salesianostriana.campaing.formbean.DatosMaestrosDto;
 import com.salesianostriana.campaing.model.DatosMaestros;
+import com.salesianostriana.campaing.service.CampanyaService;
 import com.salesianostriana.campaing.service.DatosMaestrosService;
 
 import io.swagger.annotations.Api;
@@ -30,6 +31,9 @@ public class DatosMaestrosController {
 	
 	@Autowired
 	private DatosMaestrosService datosMaestrosService;
+	
+	@Autowired
+	private CampanyaService cService;
 	
 	//Listar
 	@PreAuthorize("hasRole('USER')")
@@ -46,7 +50,7 @@ public class DatosMaestrosController {
 	@PostMapping("/add")
 	@ApiOperation(value="Añadir dato maestro")
 	public ResponseEntity<?> newDatosMaestros(@RequestBody DatosMaestrosDto newDatosMaestros) {
-		DatosMaestros datosMaestros = datosMaestrosService.save(newDatosMaestros);
+		DatosMaestros datosMaestros = datosMaestrosService.save(newDatosMaestros, cService.findById(newDatosMaestros.getId_campanya()).orElse(null));
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(datosMaestros.getId())
 				.toUri();
@@ -61,9 +65,9 @@ public class DatosMaestrosController {
 	public ResponseEntity<?> replaceDatosMaestros(@RequestBody DatosMaestrosDto newDatosMaestros) {
 
 		DatosMaestros updated = datosMaestrosService.findById(newDatosMaestros.getId()).map(datosMaestros -> {
-			return datosMaestrosService.save(newDatosMaestros);
+			return datosMaestrosService.save(newDatosMaestros, cService.findById(newDatosMaestros.getId_campanya()).orElse(null));
 		}).orElseGet(() -> {
-			return datosMaestrosService.save(newDatosMaestros);
+			return datosMaestrosService.save(newDatosMaestros, cService.findById(newDatosMaestros.getId_campanya()).orElse(null));
 		});
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(updated);
