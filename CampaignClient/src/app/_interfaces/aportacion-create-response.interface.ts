@@ -1,7 +1,6 @@
-import { User } from "./user.interface";
-
 export interface AportacionCreateResponse {
-    user: User;
+    id: number;
     dato: string;
     cantidad: number;
+    fecha: string;
 }
