@@ -6,6 +6,8 @@ import { CampaignResponse } from '../_interfaces/campaign.interface';
 import { MatDialog } from '@angular/material';
 import { Campanya } from '../_models/campanya';
 import { DialogNuevaAportacionComponent } from '../dialog-nueva-aportacion/dialog-nueva-aportacion.component';
+import { DialogEditarDatoComponent } from '../dialog-editar-dato/dialog-editar-dato.component';
+import { DatoMaestro } from '../_models/datoMaestro';
 
 @Component({
   selector: 'app-main',
@@ -81,6 +83,13 @@ export class MainComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogNuevaAportacionComponent, {
       width: '250px',
       data: {idCamp: campaign.id}
+    });
+  }
+
+  openDatoEditDialog(DatoMaestro: DatoMaestro) {
+    const dialogRef = this.dialog.open(DialogEditarDatoComponent, {
+      width: '250px',
+      data: {idDato: DatoMaestro.id}
     });
   }
 
