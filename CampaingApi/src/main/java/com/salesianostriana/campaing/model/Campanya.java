@@ -26,9 +26,9 @@ public class Campanya {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	@Column(name="NOMBRE_CAMPANYA")
+	@Column(name="NOMBRE_CAMPANYA", nullable=false)
 	private String nombreCampanya;
-	@Column(name="CODIGO")
+	@Column(name="CODIGO", unique=true, nullable=false)
 	private String codigo;
 	
 	@JsonIgnore
@@ -36,7 +36,7 @@ public class Campanya {
 	private List<Aportacion> aportaciones;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="campanya", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="campanya", orphanRemoval=true, cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<DatosMaestros> datosMaestro;
 	
 	@JsonIgnore

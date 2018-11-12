@@ -33,4 +33,8 @@ public class AportacionService {
 	public List<Aportacion> findAll() {
 		return repo.findAll();
 	}
+	
+	public List<Aportacion> Ranking(long idCampanya) {
+		return repo.ranking(idCampanya);
+	}
 }

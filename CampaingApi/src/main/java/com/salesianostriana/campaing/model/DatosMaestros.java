@@ -24,7 +24,7 @@ public class DatosMaestros {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(name = "TIPO")
+	@Column(name = "TIPO", nullable=false)
 	private String tipo;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="datosMaestros")

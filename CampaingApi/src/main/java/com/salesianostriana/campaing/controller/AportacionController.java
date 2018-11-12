@@ -61,4 +61,13 @@ public class AportacionController {
 
 		return ResponseEntity.created(location).body(a);
 	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/rankingAportaciones")
+	@ApiOperation(value="Mostrar ranking del top cinco aportaciones")
+	public ResponseEntity<?> RankingAportaciones(long idCampanya){
+		return ResponseEntity
+				.status(HttpStatus.ACCEPTED)
+				.body(aService.Ranking(idCampanya));
+	}
 }

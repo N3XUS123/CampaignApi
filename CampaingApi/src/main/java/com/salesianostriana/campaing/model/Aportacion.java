@@ -11,7 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Data;
 
@@ -22,26 +25,28 @@ public class Aportacion {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	@Column(name="DATO")
+	@Column(name="DATO", nullable=false)
 	private String dato;
-	@Column(name="CANTIDAD")
+	@Column(name="CANTIDAD", nullable=false)
 	private double cantidad;
-	@Column(name="FECHA")
+	@Column(name="FECHA", nullable=false)
 	private LocalDateTime fecha;
 	
-	@JsonIgnore
+//	@JsonIgnoreProperties(value="[id, nombreUsuario, email]")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "grupo")
+	@JsonIdentityReference(alwaysAsId = true)
 	@ManyToOne
-	@JoinColumn(name = "USUARIO")
+	@JoinColumn(name = "USUARIO", nullable=false)
 	private Usuario usuario;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "CAMPANYA")
+	@JoinColumn(name = "CAMPANYA", nullable=false)
 	private Campanya campanya;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "DATO_MAESTRO")
+	@JoinColumn(name = "DATO_MAESTRO", nullable=false)
 	private DatosMaestros datosMaestros;
 
 	public Aportacion() {
@@ -77,47 +82,6 @@ public class Aportacion {
 		this.datosMaestros = datoMaestro;
 		this.usuario = usuario;
 		
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aportacion other = (Aportacion) obj;
-		if (Double.doubleToLongBits(cantidad) != Double.doubleToLongBits(other.cantidad))
-			return false;
-		if (dato == null) {
-			if (other.dato != null)
-				return false;
-		} else if (!dato.equals(other.dato))
-			return false;
-		if (fecha == null) {
-			if (other.fecha != null)
-				return false;
-		} else if (!fecha.equals(other.fecha))
-			return false;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(cantidad);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((dato == null) ? 0 : dato.hashCode());
-		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
-	
-	
+	}	
 	
 }

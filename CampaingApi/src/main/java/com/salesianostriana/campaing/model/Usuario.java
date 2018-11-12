@@ -27,18 +27,18 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(name = "NOMBRE_USUARIO")
+	@Column(name = "NOMBRE_USUARIO", nullable=false)
 	private String nombreUsuario;
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", nullable=false)
 	private String email;
 	@JsonIgnore
-	@Column(name = "CONTRASENYA")
+	@Column(name = "CONTRASENYA", nullable=false)
 	private String contrasenya;
-	@Column(name = "GRUPO")
+	@Column(name = "GRUPO", nullable=false)
 	private String grupo;
 	@JsonIgnore
-	@Column(name = "ENABLED")
-	private Boolean enabled;
+	@Column(name = "ENABLED", nullable=false)
+	private Boolean enabled = true;
 
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="usuario", orphanRemoval=true)
@@ -61,7 +61,6 @@ public class Usuario {
 		this.email = email;
 		this.contrasenya = contrasenya;
 		this.grupo = grupo;
-		this.enabled = true;
 	}
 
 	public Usuario addRole(Authorities a) {
@@ -95,5 +94,5 @@ public class Usuario {
 		}
 		return this;
 	}
-
+	
 }

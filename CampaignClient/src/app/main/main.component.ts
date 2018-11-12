@@ -64,18 +64,12 @@ export class MainComponent implements OnInit {
   joinCampaign() {
     this.campaignService.joinCampaign(this.campaignInput).subscribe(campaignList => {
       this.campaigns = campaignList;
-      window.location.reload();
-
-    }, error => {
-      console.log('Error.');
     });
   }
 
   showMine() {
     this.campaignService.getJoinedCampaigns().subscribe(campaignList => {
       this.campaigns = campaignList;
-    }, error => {
-      console.log('Error. No recibe datos.');
     });
   }
 
