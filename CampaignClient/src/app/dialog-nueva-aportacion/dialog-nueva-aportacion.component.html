@@ -7,5 +7,13 @@
       <textarea matInput placeholder="Cantidad" [(ngModel)]="cantidad"></textarea>
     </mat-form-field>
   
-    <button mat-raised-button color="primary" (click)="addAportacion()">Añadir aportación</button>
+    <mat-form-field>
+      <mat-select placeholder="Categoría" [(value)]="idDatosMaestros">
+        <mat-option *ngFor="let d of datosMaestros" [value]="d.id">
+          {{d.tipo}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveAportacion()">Añadir aportación</button>
   </div>

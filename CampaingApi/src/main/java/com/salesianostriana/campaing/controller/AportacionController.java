@@ -5,8 +5,10 @@ import java.net.URI;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,11 +40,21 @@ public class AportacionController {
 	private UsuarioService uService;
 	
 	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/listaAportaciones")
+	@ApiOperation(value="Mostrar listado completo de aportaciones")
+	public ResponseEntity<?> listarAportaciones(){
+		return ResponseEntity
+				.status(HttpStatus.ACCEPTED)
+				.body(aService.findAll());
+	}
+	
+	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/nuevaAportacion")
 	@ApiOperation(value="Añadir una nueva aportación")
 	public ResponseEntity<?> newAportacion(HttpServletRequest request, @RequestBody AportacionDto nuevaAportacion) {
+		System.out.println(nuevaAportacion);
 		Usuario u = uService.findByEmail(tokenFilter.returnUsernameFromToken(request));
-		Aportacion a = aService.save(nuevaAportacion);
+		Aportacion a = aService.save(nuevaAportacion, u);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(a.getId())
 				.toUri();

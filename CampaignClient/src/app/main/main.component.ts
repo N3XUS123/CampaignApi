@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { CampaignService } from '../_services/campaign.service';
 import { CampaignResponse } from '../_interfaces/campaign.interface';
+import { MatDialog } from '@angular/material';
+import { Campanya } from '../_models/campanya';
+import { DialogNuevaAportacionComponent } from '../dialog-nueva-aportacion/dialog-nueva-aportacion.component';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +22,7 @@ export class MainComponent implements OnInit {
   campaignInput: String;
 
 
-  constructor(private authService: AuthService, private campaignService: CampaignService, private router: Router) {}
+  constructor(private authService: AuthService, private campaignService: CampaignService, private router: Router, public dialog: MatDialog) {}
 
   ngOnInit() {
     if (this.authService.getToken() == null) {
@@ -73,4 +76,12 @@ export class MainComponent implements OnInit {
       console.log('Error. No recibe datos.');
     });
   }
+
+  openAportacionDialog(campaign: Campanya) {
+    const dialogRef = this.dialog.open(DialogNuevaAportacionComponent, {
+      width: '250px',
+      data: {idCamp: campaign.id}
+    });
+  }
+
 }
