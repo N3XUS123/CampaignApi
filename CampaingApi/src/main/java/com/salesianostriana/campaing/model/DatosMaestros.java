@@ -1,6 +1,6 @@
 package com.salesianostriana.campaing.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,10 +29,10 @@ public class DatosMaestros {
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="datosMaestros")
 	@JsonIgnore
-	private Set<Aportacion> aportaciones;
+	private List<Aportacion> aportaciones;
 	
-	@ManyToOne(optional=false, targetEntity=Campanya.class)
 	@JsonIgnore
+	@ManyToOne
 	private Campanya campanya;
 
 	public DatosMaestros() {

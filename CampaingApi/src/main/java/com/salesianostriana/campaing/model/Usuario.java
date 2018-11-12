@@ -1,20 +1,19 @@
 package com.salesianostriana.campaing.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,14 +40,18 @@ public class Usuario {
 	@Column(name = "ENABLED")
 	private Boolean enabled;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="usuario", orphanRemoval=true)
-	private Set<Aportacion> aportaciones = new HashSet<Aportacion>();
+	private List<Aportacion> aportaciones;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Campanya> campanyas = new HashSet<Campanya>();
+	@JsonIgnore
+	@ManyToMany
+	private List<Campanya> campanyas;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
-	private List<Authorities> authorities = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Authorities> authorities;
 
 	public Usuario() {
 	}

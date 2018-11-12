@@ -1,10 +1,13 @@
 package com.salesianostriana.campaing.model;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,20 +31,19 @@ public class Campanya {
 	@Column(name="CODIGO")
 	private String codigo;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="campanya", targetEntity=Aportacion.class)
 	@JsonIgnore
-	private Set<Aportacion> aportaciones;
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval=true, mappedBy="campanya", fetch=FetchType.EAGER)
+	private List<Aportacion> aportaciones;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="campanya", targetEntity=DatosMaestros.class)
 	@JsonIgnore
-	private Set<DatosMaestros> datosMaestros;
+	@OneToMany(mappedBy="campanya", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private List<DatosMaestros> datosMaestro;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "campanyas")
-	@JsonIgnore
-	private Set<Usuario> usuario;
+	private Set<Usuario> usuario = new HashSet<>();
 
 	public Campanya() {
-		super();
 	}
 
 	public Campanya(String nombreCampanya, String codigo) {
