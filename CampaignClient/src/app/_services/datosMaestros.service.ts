@@ -27,6 +27,19 @@ createDato(datoCreateDto: DatoCreateDto): Observable<DatoCreateResponse> {
       return this.http.post<DatoCreateResponse>(`${datosUrl}/add`, datoCreateDto, requestOptions);
   }
 
+deleteDato(element: Datos): Observable<Datos[]>{
+  console.log(element);
+  const requestOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken()}`,
+      'Access-Control-Allow-Origin': '*'
+    })
+  };
+
+  return this.http.delete<Datos[]>(`${datosUrl}/remove/${element.id}`, requestOptions);
+}
+
 getAllDatos(): Observable<Datos[]> {
     const requestOptions = {
       headers: new HttpHeaders({

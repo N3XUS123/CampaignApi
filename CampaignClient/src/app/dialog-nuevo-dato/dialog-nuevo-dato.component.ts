@@ -29,9 +29,7 @@ import { CampaignService } from "../_services/campaign.service"
 
     }
   
-    addDato() {
-      console.log(this.campanya);
-      
+    addDato() {   
       const datoCreate = new DatoMaestro(this.tipo, this.campanya);
       this.datosService.createDato(datoCreate).subscribe(
        dato => {
