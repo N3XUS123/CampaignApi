@@ -7,6 +7,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { DatosMaestrosComponent } from './DatosMaestros/datosMaestros.component';
 import { RegistroCampanyaComponent } from './registroCampanya/registroCampanya.component';
 import { MainComponent } from './main/main.component';
+import { RankingAportacionesComponent } from './ranking-aportaciones/ranking-aportaciones.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
   { path: 'main', component: MainComponent },
-  { path: 'registroCampanya', component: RegistroCampanyaComponent }
+  { path: 'registroCampanya', component: RegistroCampanyaComponent },
+  { path: 'ranking-aportaciones', component: RankingAportacionesComponent }
 ];
 
 @NgModule({

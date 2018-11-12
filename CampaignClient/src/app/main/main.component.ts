@@ -79,13 +79,6 @@ export class MainComponent implements OnInit {
     });
   }
 
-  openAportacionDialog(campaign: Campanya) {
-    const dialogRef = this.dialog.open(DialogNuevaAportacionComponent, {
-      width: '250px',
-      data: {idCamp: campaign.id}
-    });
-  }
-
   openDatoEditDialog(DatoMaestro: DatoMaestro) {
     const dialogRef = this.dialog.open(DialogEditarDatoComponent, {
       width: '250px',

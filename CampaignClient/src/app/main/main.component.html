@@ -81,7 +81,7 @@
       <button mat-button (click)="DoEliminarCampanya(item.id)" *ngIf="isAdmin()">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-button (click)="openAportacionDialog(item)">Ver más</button>
+      <button mat-button routerLink="/ranking-aportaciones">Ver más</button>
     </mat-card-actions>
   </mat-card>
 </div>

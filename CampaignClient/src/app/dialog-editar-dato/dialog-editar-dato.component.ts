@@ -29,7 +29,7 @@ import { DatoEditado } from "../_dto/datoEditado.dto";
         });
 
     }
-  
+  /*
     editDato() {   
       const datoEdit = new DatoEditado(this.idDatoMaestro, this.tipo);
       this.datosService.createDato(datoEdit).subscribe(
@@ -38,5 +38,5 @@ import { DatoEditado } from "../_dto/datoEditado.dto";
       }
      );
     }
-  
+  */
   }

@@ -26,4 +26,16 @@ createAportacion(aportacionCreateDto: AportacionCreateDto): Observable<Aportacio
     return this.http.post<AportacionCreateResponse>(`${aportacionUrl}/nuevaAportacion`, aportacionCreateDto, requestOptions);
 }
 
+getAllAportaciones(): Observable<AportacionCreateResponse[]> {
+  const requestOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken()}`,
+      'Access-Control-Allow-Origin': '*'
+    })
+  };
+
+  return this.http.get<AportacionCreateResponse[]>(`${aportacionUrl}/listaAportaciones`, requestOptions);
+ }
+
 }
