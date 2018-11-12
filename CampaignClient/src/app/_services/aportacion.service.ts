@@ -5,6 +5,7 @@ import { AuthService } from "./auth.service";
 import { AportacionCreateResponse } from "../_interfaces/aportacion-create-response.interface";
 import { AportacionCreateDto } from "../_dto/aportacion-create.dto";
 import { Observable } from "rxjs";
+import { Aportacion } from "../_models/aportacion";
 
 const aportacionUrl = `${environment.apiUrl}/aportaciones`;
 
@@ -37,5 +38,18 @@ getAllAportaciones(): Observable<AportacionCreateResponse[]> {
 
   return this.http.get<AportacionCreateResponse[]>(`${aportacionUrl}/listaAportaciones`, requestOptions);
  }
+
+ deleteAportacion(element: AportacionCreateResponse): Observable<Aportacion[]>{
+  console.log(element);
+  const requestOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken()}`,
+      'Access-Control-Allow-Origin': '*'
+    })
+  };
+
+  return this.http.delete<Aportacion[]>(`${aportacionUrl}/remove/${element.id}`, requestOptions);
+}
 
 }

@@ -5,6 +5,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { Campanya } from '../_models/campanya';
 import { DialogNuevaAportacionComponent } from '../dialog-nueva-aportacion/dialog-nueva-aportacion.component';
 import { Router } from '@angular/router';
+import { Aportacion } from '../_models/aportacion';
 
 @Component({
   selector: 'app-ranking-aportaciones',
@@ -44,6 +45,15 @@ export class RankingAportacionesComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogNuevaAportacionComponent, {
       width: '250px',
       data: {idCamp: campaign.id}
+    });
+  }
+
+  eliminarAportacion(aportacion: Aportacion) {
+    this.aportacionService.deleteAportacion(aportacion).subscribe(listaAportaciones => {
+      this.dataSource = listaAportaciones;
+    })
+    this.snackBar.open(`Eliminando ${aportacion.dato}`, 'Cerrar', {
+      duration: 3000,
     });
   }
 }

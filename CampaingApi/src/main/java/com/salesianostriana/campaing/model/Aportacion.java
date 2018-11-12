@@ -49,9 +49,6 @@ public class Aportacion {
 	@JoinColumn(name = "DATO_MAESTRO", nullable=false)
 	private DatosMaestros datosMaestros;
 
-	public Aportacion() {
-		
-	}
 
 	public Aportacion(String dato, double cantidad, Usuario usuario, Campanya campanya,
 			DatosMaestros datosMaestros) {
