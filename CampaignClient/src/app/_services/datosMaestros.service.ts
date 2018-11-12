@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { Datos } from '../_interfaces/datosMaestros.interface';
 import { DatoCreateDto } from '../_dto/datosMaestros.dto';
 import { DatoCreateResponse } from '../_interfaces/datosMaestros-response.interface';
+import { DatoEditado } from '../_dto/datoEditado.dto';
 const datosUrl = `${environment.apiUrl}/datosMaestros`;
 
 
@@ -26,6 +27,18 @@ createDato(datoCreateDto: DatoCreateDto): Observable<DatoCreateResponse> {
   
       return this.http.post<DatoCreateResponse>(`${datosUrl}/add`, datoCreateDto, requestOptions);
   }
+
+  editDato(datoEditadoDto: DatoEditado): Observable<Datos> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    return this.http.post<Datos>(`${datosUrl}/edit`, datoEditadoDto, requestOptions);
+}
 
 deleteDato(element: Datos): Observable<Datos[]>{
   console.log(element);
