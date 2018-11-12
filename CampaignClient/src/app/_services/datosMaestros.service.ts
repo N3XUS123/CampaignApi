@@ -27,7 +27,7 @@ createDato(datoCreateDto: DatoCreateDto): Observable<DatoCreateResponse> {
       return this.http.post<DatoCreateResponse>(`${datosUrl}/add`, datoCreateDto, requestOptions);
   }
 
-deleteDato(element: Datos): Observable<Datos[]>{
+cdeleteDato(element: Datos): Observable<Datos[]>{
   console.log(element);
   const requestOptions = {
     headers: new HttpHeaders({
