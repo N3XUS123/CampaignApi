@@ -20,6 +20,7 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
 import { DialogNuevoDatoComponent } from './dialog-nuevo-dato/dialog-nuevo-dato.component';
 import { AuthService } from './_services/auth.service';
 import { DatosService } from './_services/datosMaestros.service';
+import { DialogNuevaAportacionComponent } from './dialog-nueva-aportacion/dialog-nueva-aportacion.component';
 
 
 @NgModule({
@@ -30,10 +31,12 @@ import { DatosService } from './_services/datosMaestros.service';
     DatosMaestrosComponent,
     RegistroCampanyaComponent,
     MainComponent,
-    DialogNuevoDatoComponent
+    DialogNuevoDatoComponent,
+    DialogNuevaAportacionComponent 
   ],
   entryComponents: [
-    DialogNuevoDatoComponent
+    DialogNuevoDatoComponent,
+    DialogNuevaAportacionComponent
 ],
   imports: [
     BrowserModule,

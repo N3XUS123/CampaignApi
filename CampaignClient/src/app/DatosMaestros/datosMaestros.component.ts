@@ -42,10 +42,12 @@ export class DatosMaestrosComponent{
     dialogoNuevoDato.afterClosed().subscribe(result => {
       this.getListaDatos('Dato creado');
     });
-
   }
 
   eliminarDato(element: Datos) {
+    this.datosMaestrosService.deleteDato(element).subscribe(listaDatos => {
+      this.dataSource = listaDatos;
+    })
     this.snackBar.open(`Eliminando ${element.tipo}`, 'Cerrar', {
       duration: 3000,
     });

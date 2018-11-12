@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.campaing.formbean.DatosMaestrosDto;
+import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.model.DatosMaestros;
 import com.salesianostriana.campaing.repository.CampanyaRepository;
 import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
@@ -29,6 +30,8 @@ public class DatosMaestrosService {
 	}
 
 	public void deleteById(Long id) {
+		Campanya c = repo.getOne(id).getCampanya();
+		repo.getOne(id).removeCampanya(c);
 		repo.deleteById(id);
 	}
 

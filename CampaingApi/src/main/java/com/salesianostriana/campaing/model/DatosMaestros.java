@@ -48,8 +48,8 @@ public class DatosMaestros {
 	}
 
 	public void removeCampanya(Campanya c) {
-		this.setCampanya(null);
 		c.getDatosMaestros().remove(this);
+		this.setCampanya(null);
 	}
 
 	@Override
