@@ -3,6 +3,7 @@ import { Datos } from '../_interfaces/datosMaestros.interface';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { DatosService } from '../_services/datosMaestros.service';
 import { DialogNuevoDatoComponent } from '../dialog-nuevo-dato/dialog-nuevo-dato.component';
+import { DialogEditarDatoComponent } from '../dialog-editar-dato/dialog-editar-dato.component';
 
 @Component({
   selector: 'app-listaDatos',
@@ -35,6 +36,16 @@ export class DatosMaestrosComponent{
       });
     });
   }
+
+  editarDato(dato: Datos) {
+    const dialogoEditarDato = this.dialog.open(DialogEditarDatoComponent, {
+      data: { idDato: dato.id },
+    });
+
+    dialogoEditarDato.afterClosed().subscribe(result => {
+      this.getListaDatos('Dato modificado');
+    });
+}
 
   openDialogNuevoDato() {
     const dialogoNuevoDato = this.dialog.open(DialogNuevoDatoComponent);

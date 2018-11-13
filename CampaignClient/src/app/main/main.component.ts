@@ -73,11 +73,4 @@ export class MainComponent implements OnInit {
     });
   }
 
-  openDatoEditDialog(DatoMaestro: DatoMaestro) {
-    const dialogRef = this.dialog.open(DialogEditarDatoComponent, {
-      width: '250px',
-      data: {idDato: DatoMaestro.id}
-    });
-  }
-
 }

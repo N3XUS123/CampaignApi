@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salesianostriana.campaing.formbean.DatosMaestrosDto;
+import com.salesianostriana.campaing.formbean.EditDatosMaestrosDto;
 import com.salesianostriana.campaing.model.DatosMaestros;
 import com.salesianostriana.campaing.service.CampanyaService;
 import com.salesianostriana.campaing.service.DatosMaestrosService;
@@ -60,15 +61,12 @@ public class DatosMaestrosController {
 	
 	//Editar
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/edit")
+	@PutMapping("/edit/{id}")
 	@ApiOperation(value="Editar dato maestro")
-	public ResponseEntity<?> replaceDatosMaestros(@RequestBody DatosMaestrosDto newDatosMaestros) {
-
+	public ResponseEntity<?> replaceDatosMaestros(@RequestBody EditDatosMaestrosDto newDatosMaestros) {
 		DatosMaestros updated = datosMaestrosService.findById(newDatosMaestros.getId()).map(datosMaestros -> {
-			return datosMaestrosService.save(newDatosMaestros, cService.findById(newDatosMaestros.getId_campanya()).orElse(null));
-		}).orElseGet(() -> {
-			return datosMaestrosService.save(newDatosMaestros, cService.findById(newDatosMaestros.getId_campanya()).orElse(null));
-		});
+			return datosMaestrosService.edit(newDatosMaestros);
+		}).orElse(null);
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(updated);
 	}
@@ -77,8 +75,9 @@ public class DatosMaestrosController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/remove/{id}")
 	@ApiOperation(value="Borrar dato maestro")
-	public void deleteDatosMaestros(@PathVariable Long id) {
+	public ResponseEntity <?> deleteDatosMaestros(@PathVariable Long id) {
 		datosMaestrosService.deleteById(id);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(datosMaestrosService.findAll());
 	}
 
 	

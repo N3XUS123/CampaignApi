@@ -12,7 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Data;
 
@@ -27,15 +30,21 @@ public class DatosMaestros {
 	@Column(name = "TIPO", nullable=false)
 	private String tipo;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="datosMaestros")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="datosMaestros")
 	@JsonIgnore
 	private List<Aportacion> aportaciones;
 	
-	@JsonIgnore
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "nombreCampanya")
+	@JsonIdentityReference(alwaysAsId = true)
 	@ManyToOne
 	private Campanya campanya;
 
 	public DatosMaestros() {
+	}
+	
+	public DatosMaestros(long id, String tipo) {
+		this.id = id;
+		this.tipo = tipo;
 	}
 
 	public DatosMaestros(String tipo, Campanya campanya) {

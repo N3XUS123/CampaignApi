@@ -12,6 +12,6 @@ public interface AportacionRepository extends JpaRepository<Aportacion, Long> {
 	@Query(value = "SELECT * FROM APORTACION WHERE CAMPANYA = ?1 GROUP BY USUARIO ORDER BY CANTIDAD LIMIT 5", nativeQuery = true)
 	public List<Aportacion> rankingTotal(long idCampanya);
 	
-	public List<Aportacion> rankingPorUsuario(long id);
+	// public List<Aportacion> rankingPorUsuario(long id);
 
 }

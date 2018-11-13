@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { DatosService } from "../_services/datosMaestros.service";
 import { CampaignResponse } from "../_interfaces/campaign.interface";
 import { CampaignService } from "../_services/campaign.service"
+import { Datos } from "../_interfaces/datosMaestros.interface";
 import { DatoEditado } from "../_dto/datoEditado.dto";
 
 @Component({
@@ -11,32 +12,25 @@ import { DatoEditado } from "../_dto/datoEditado.dto";
     styleUrls: ['./dialog-editar-dato.component.css']
   })
   export class DialogEditarDatoComponent implements OnInit {
+    dato: Datos;
     tipo: string;
     campaigns: CampaignResponse[];
     campanya: number;
-    idDatoMaestro: any;
+    idDatoMaestro:number = this.data.idDato;
   
-    constructor(private datosService: DatosService, private campaignService: CampaignService,
-      public dialogRef: MatDialogRef<DialogEditarDatoComponent>,
+    constructor(private datosService: DatosService, public dialogRef: MatDialogRef<DialogEditarDatoComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any) { }
   
     ngOnInit() {
-        this.idDatoMaestro = this.data.idDato;
-        this.campaignService.getCampaigns().subscribe(campaignList => {
-          this.campaigns = campaignList;
-        }, error => {
-          console.log('Error. No recibe datos.');
-        });
 
     }
-  /*
-    editDato() {   
-      const datoEdit = new DatoEditado(this.idDatoMaestro, this.tipo);
-      this.datosService.createDato(datoEdit).subscribe(
-       dato => {
-         this.dialogRef.close(dato);
-      }
-     );
+    
+    editDato() {
+      console.log(this.idDatoMaestro)
+      const datoCreate = new DatoEditado(this.idDatoMaestro ,this.tipo);
+      this.datosService.editarDato(datoCreate).subscribe(dato => {
+        this.dialogRef.close();
+    });
     }
-  */
+
   }

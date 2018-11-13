@@ -28,7 +28,7 @@ createDato(datoCreateDto: DatoCreateDto): Observable<DatoCreateResponse> {
       return this.http.post<DatoCreateResponse>(`${datosUrl}/add`, datoCreateDto, requestOptions);
   }
 
-  editDato(datoEditadoDto: DatoEditado): Observable<Datos> {
+editarDato(datoEditadoDto: DatoEditado): Observable<Datos> {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ createDato(datoCreateDto: DatoCreateDto): Observable<DatoCreateResponse> {
       })
     };
 
-    return this.http.post<Datos>(`${datosUrl}/edit`, datoEditadoDto, requestOptions);
+    return this.http.put<Datos>(`${datosUrl}/edit/${datoEditadoDto.id}`, datoEditadoDto, requestOptions);
 }
 
 deleteDato(element: Datos): Observable<Datos[]>{

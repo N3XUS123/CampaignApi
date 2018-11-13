@@ -22,6 +22,7 @@ import { AuthService } from './_services/auth.service';
 import { DatosService } from './_services/datosMaestros.service';
 import { DialogNuevaAportacionComponent } from './dialog-nueva-aportacion/dialog-nueva-aportacion.component';
 import { RankingAportacionesComponent } from './ranking-aportaciones/ranking-aportaciones.component';
+import { DialogEditarDatoComponent } from './dialog-editar-dato/dialog-editar-dato.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +34,13 @@ import { RankingAportacionesComponent } from './ranking-aportaciones/ranking-apo
     MainComponent,
     DialogNuevoDatoComponent,
     DialogNuevaAportacionComponent,
-    RankingAportacionesComponent 
+    RankingAportacionesComponent,
+    DialogEditarDatoComponent 
   ],
   entryComponents: [
     DialogNuevoDatoComponent,
-    DialogNuevaAportacionComponent
+    DialogNuevaAportacionComponent,
+    DialogEditarDatoComponent
 ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.campaing.formbean.DatosMaestrosDto;
+import com.salesianostriana.campaing.formbean.EditDatosMaestrosDto;
 import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.model.DatosMaestros;
 import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
@@ -31,6 +32,12 @@ public class DatosMaestrosService {
 
 	public DatosMaestros save(DatosMaestrosDto newDatosMaestros, Campanya c) {
 		DatosMaestros datoMaestro = new DatosMaestros(newDatosMaestros.getTipo(), c);
+		return repo.save(datoMaestro);
+	}
+
+	public DatosMaestros edit(EditDatosMaestrosDto newDatosMaestros) {
+		DatosMaestros datoMaestro = repo.findById(newDatosMaestros.getId()).orElse(null);
+		datoMaestro.setTipo(newDatosMaestros.getTipo());
 		return repo.save(datoMaestro);
 	}
 

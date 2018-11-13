@@ -12,8 +12,6 @@ public class DatosMaestrosDto {
 	public DatosMaestrosDto(String tipo, long id_campanya) {
 		this.tipo = tipo;
 		this.id_campanya = id_campanya;
-	}
-	
-	
+	}	
 	
 }
