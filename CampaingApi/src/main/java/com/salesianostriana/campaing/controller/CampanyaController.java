@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.salesianostriana.campaing.exception.CampanyaNotFoundException;
 import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.model.Usuario;
+import com.salesianostriana.campaing.repository.CampanyaRepository;
 import com.salesianostriana.campaing.security.JwtAuthorizationTokenFilter;
 import com.salesianostriana.campaing.service.CampanyaService;
 import com.salesianostriana.campaing.service.UsuarioService;
@@ -39,6 +41,9 @@ public class CampanyaController {
 
 	@Autowired
 	private JwtAuthorizationTokenFilter tokenFilter;
+	
+	@Autowired
+	private CampanyaRepository repo;
 
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/list")
@@ -85,5 +90,11 @@ public class CampanyaController {
 		uService.edit(u);
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
 				.body(campanyaService.findAll(uService.findByEmail(tokenFilter.returnUsernameFromToken(request))));
+	}
+	
+	@GetMapping("/campanya/{id}")
+	public Campanya one(@PathVariable Long id) {
+
+		return repo.findById(id).orElseThrow(() -> new CampanyaNotFoundException(id));
 	}
 }

@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.salesianostriana.campaing.exception.AportacionNotFoundException;
 import com.salesianostriana.campaing.formbean.AportacionDto;
 import com.salesianostriana.campaing.model.Aportacion;
 import com.salesianostriana.campaing.model.Usuario;
+import com.salesianostriana.campaing.repository.AportacionRepository;
 import com.salesianostriana.campaing.security.JwtAuthorizationTokenFilter;
 import com.salesianostriana.campaing.service.AportacionService;
 import com.salesianostriana.campaing.service.UsuarioService;
+
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,6 +44,9 @@ public class AportacionController {
 	@Autowired
 	private UsuarioService uService;
 	
+	@Autowired
+	private AportacionRepository repo;
+	
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/listaAportaciones")
 	@ApiOperation(value="Mostrar listado completo de aportaciones")
@@ -48,6 +54,12 @@ public class AportacionController {
 		return ResponseEntity
 				.status(HttpStatus.ACCEPTED)
 				.body(aService.findAll());
+	}
+	
+	@GetMapping("/aportacion/{id}")
+	public Aportacion one(@PathVariable Long id) {
+
+		return repo.findById(id).orElseThrow(() -> new AportacionNotFoundException(id));
 	}
 	
 	/*

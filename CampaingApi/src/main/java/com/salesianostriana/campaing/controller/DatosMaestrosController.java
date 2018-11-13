@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.salesianostriana.campaing.exception.DatosMaestrosNotFoundException;
 import com.salesianostriana.campaing.formbean.DatosMaestrosDto;
 import com.salesianostriana.campaing.formbean.EditDatosMaestrosDto;
 import com.salesianostriana.campaing.model.DatosMaestros;
+import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
 import com.salesianostriana.campaing.service.CampanyaService;
 import com.salesianostriana.campaing.service.DatosMaestrosService;
 
@@ -35,6 +37,9 @@ public class DatosMaestrosController {
 	
 	@Autowired
 	private CampanyaService cService;
+	
+	@Autowired
+	private DatosMaestrosRepository repo;
 	
 	//Listar
 	@PreAuthorize("hasRole('USER')")
@@ -80,5 +85,9 @@ public class DatosMaestrosController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(datosMaestrosService.findAll());
 	}
 
-	
+	@GetMapping("/datosMaestros/{id}")
+	public DatosMaestros one(@PathVariable Long id) {
+
+		return repo.findById(id).orElseThrow(() -> new DatosMaestrosNotFoundException(id));
+	}
 }
