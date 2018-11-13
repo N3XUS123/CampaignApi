@@ -17,7 +17,7 @@ export class RankingAportacionesComponent implements OnInit {
 
   displayedColumns: string[] = ['dato', 'cantidad', 'fecha'];
   dataSource: AportacionCreateResponse[];
-  campanyaId: number;
+  campanyaId: any;
 
   constructor(private aportacionService: AportacionService,
     private campanyaService: CampaignService,
@@ -26,8 +26,11 @@ export class RankingAportacionesComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    this.campanyaService.currentId.subscribe(message => (this.campanyaId = parseInt(message)));
-    this.getAportaciones('Listado de datos cargado');
+      this.campanyaService.currentId.subscribe(message => (this.campanyaId = parseInt(message)));
+      if (isNaN(this.campanyaId)) {
+        window.location.replace("/main");
+      }
+      this.getAportaciones('Listado de datos cargado');    
   }
 
   getAportaciones(mensaje: string) {
