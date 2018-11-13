@@ -26,7 +26,6 @@ import { DatoEditado } from "../_dto/datoEditado.dto";
     }
     
     editDato() {
-      console.log(this.idDatoMaestro)
       const datoCreate = new DatoEditado(this.idDatoMaestro ,this.tipo);
       this.datosService.editarDato(datoCreate).subscribe(dato => {
         this.dialogRef.close();
