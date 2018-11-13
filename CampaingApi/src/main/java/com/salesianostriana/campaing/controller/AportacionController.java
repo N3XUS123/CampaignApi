@@ -50,6 +50,15 @@ public class AportacionController {
 				.body(aService.findAll());
 	}
 	
+	/*
+	@GetMapping("/listaMisAportaciones")
+	@ApiOperation(value = "Mostrar listado completo de las aportaciones del usuario en una campaña.")
+	public ResponseEntity<?> listarMisAportaciones(HttpServletRequest request) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED)
+				.body(aService.findAllMine(uService.findByEmail(tokenFilter.returnUsernameFromToken(request))));
+	}
+	*/
+	
 	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/nuevaAportacion")
 	@ApiOperation(value="Añadir una nueva aportación")
