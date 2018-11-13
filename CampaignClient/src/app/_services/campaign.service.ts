@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CampaignResponse } from '../_interfaces/campaign.interface';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { CampaignsDto } from '../_dto/campaigns.dto';
 
@@ -12,6 +12,8 @@ const campaignUrl = `${environment.apiUrl}/campanyas`;
 })
 
 export class CampaignService {
+  private idSource = new BehaviorSubject('');
+  currentId = this.idSource.asObservable();
 
   token = localStorage.getItem('token');
   requestOptions = {
@@ -39,4 +41,9 @@ export class CampaignService {
   joinCampaign(code: String): Observable<CampaignResponse[]> {
     return this.http.post<CampaignResponse[]>(`${campaignUrl}/join`, code, this.requestOptions);
   }
+
+  passidCampanya(id: number) {
+    this.idSource.next(id.toString());
+  }
+  
 }

@@ -2,12 +2,11 @@ package com.salesianostriana.campaing.controller;
 
 import java.net.URI;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +20,6 @@ import com.salesianostriana.campaing.exception.CampanyaNotFoundException;
 import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.CampanyaRepository;
-import com.salesianostriana.campaing.security.JwtAuthorizationTokenFilter;
 import com.salesianostriana.campaing.service.CampanyaService;
 import com.salesianostriana.campaing.service.UsuarioService;
 
@@ -38,9 +36,6 @@ public class CampanyaController {
 
 	@Autowired
 	private UsuarioService uService;
-
-	@Autowired
-	private JwtAuthorizationTokenFilter tokenFilter;
 	
 	@Autowired
 	private CampanyaRepository repo;
@@ -48,16 +43,18 @@ public class CampanyaController {
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/list")
 	@ApiOperation(value = "Mostrar listado completo de campañas")
-	public ResponseEntity<?> listarCampanyas(HttpServletRequest request) {
+	public ResponseEntity<?> listarCampanyas() {
+		String emailLogueado = SecurityContextHolder.getContext().getAuthentication().getName();
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(campanyaService.findAll(uService.findByEmail(tokenFilter.returnUsernameFromToken(request))));
+				.body(campanyaService.findAll(uService.findByEmail(emailLogueado)));
 	}
 	
 	@GetMapping("/list/mine")
 	@ApiOperation(value = "Mostrar listado completo de campañas unidas por el usuario")
-	public ResponseEntity<?> listarMisCampanyas(HttpServletRequest request) {
+	public ResponseEntity<?> listarMisCampanyas() {
+		String emailLogueado = SecurityContextHolder.getContext().getAuthentication().getName();
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(campanyaService.findAllMine(uService.findByEmail(tokenFilter.returnUsernameFromToken(request))));
+				.body(campanyaService.findAllMine(uService.findByEmail(emailLogueado)));
 	}
 
 	// Añadir
@@ -84,12 +81,13 @@ public class CampanyaController {
 	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/join")
 	@ApiOperation(value = "Unirse a una campaña")
-	public ResponseEntity<?> joinCampaign(@RequestBody String code, HttpServletRequest request) {
-		Usuario u = uService.findByEmail(tokenFilter.returnUsernameFromToken(request));
+	public ResponseEntity<?> joinCampaign(@RequestBody String code) {
+		String emailLogueado = SecurityContextHolder.getContext().getAuthentication().getName();
+		Usuario u = uService.findByEmail(emailLogueado);
 		u.joinCampaign(campanyaService.findByCode(code));
 		uService.edit(u);
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(campanyaService.findAll(uService.findByEmail(tokenFilter.returnUsernameFromToken(request))));
+				.body(campanyaService.findAll(u));
 	}
 	
 	@GetMapping("/campanya/{id}")

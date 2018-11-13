@@ -73,4 +73,8 @@ export class MainComponent implements OnInit {
     });
   }
 
+  passIdCampanya(id:number) {
+    this.campaignService.passidCampanya(id);
+  }
+
 }

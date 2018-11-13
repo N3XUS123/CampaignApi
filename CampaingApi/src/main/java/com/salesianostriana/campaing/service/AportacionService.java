@@ -1,11 +1,11 @@
 package com.salesianostriana.campaing.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.salesianostriana.campaing.exception.AportacionNotFoundException;
 import com.salesianostriana.campaing.formbean.AportacionDto;
 import com.salesianostriana.campaing.model.Aportacion;
 import com.salesianostriana.campaing.model.Campanya;
@@ -13,7 +13,6 @@ import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.AportacionRepository;
 import com.salesianostriana.campaing.repository.CampanyaRepository;
 import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
-import com.salesianostriana.campaing.response.CampanyaResponse;
 
 @Service
 public class AportacionService {
@@ -44,16 +43,12 @@ public class AportacionService {
 	public void deleteById(Long id) {
 		repo.deleteById(id);
 	}
-/*
-	public List<Aportacion> findAllMine(Usuario u) {
-		List<Aportacion> aList = new ArrayList<Aportacion>();
-		for (Aportacion i : repo.findAll()) {
-			if (i.getUsuario().equals(u)) {
-				Aportacion a = new Aportacion(i.getDato(), i.getCantidad(), i.getCampanya(), i.getDatosMaestros(), i.getUsuario());
-				aList.add(a);
-			}
-		}
-		return aList;
+	
+	public List<Aportacion> allMyCampaignsContributions(Usuario u, Campanya c) {
+		return repo.allMyCampaignsContributions(u, c);
 	}
-	*/
+	
+	public Aportacion findOne(Long id) {
+		return repo.findById(id).orElseThrow(() -> new AportacionNotFoundException(id));
+	}
 }

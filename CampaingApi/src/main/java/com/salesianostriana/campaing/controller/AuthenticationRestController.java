@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiOperation;
 
 // Controller de logueo
 @RestController
-@Api(tags = "Login Registro", description="REST API DE LOGIN Y REGISTRO")
+@Api(tags = "Login Registro", description = "REST API DE LOGIN Y REGISTRO")
 public class AuthenticationRestController {
 
 	@Value("${jwt.header}")
@@ -42,7 +42,7 @@ public class AuthenticationRestController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -52,20 +52,18 @@ public class AuthenticationRestController {
 	@Autowired
 	@Qualifier("jwtUserDetailsService")
 	private UserDetailsService userDetailsService;
-	
-	
 
 	// Inicio de sesión
 	@RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
-	@ApiOperation(value="Iniciar sesión")
+	@ApiOperation(value = "Iniciar sesión")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtLoginDto authenticationRequest)
 			throws AuthenticationException {
 
 		authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
-		
+
 		Usuario u = usuarioService.findByEmail(authenticationRequest.getEmail());
 		boolean admin = usuarioService.checkAdmin(authenticationRequest.getEmail());
-		
+
 		// Reload password post-security so we can generate the token
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 		final String token = jwtTokenUtil.generateToken(userDetails);
@@ -73,41 +71,28 @@ public class AuthenticationRestController {
 		// Return the token
 		return ResponseEntity.ok(new JwtAuthenticationResponse(token, u.getEmail(), u.getNombreUsuario(), admin));
 	}
-	
-    @PostMapping("/registro")
-    @ApiOperation(value="Registrar nuevo usuario")
-    public ResponseEntity<?> createRegistrationToken(@RequestBody RegistroDto nuevoUsuario) throws AuthenticationException, Exceptions {
 
-    	if (usuarioService.checkEmailRegistered(nuevoUsuario.getEmail())) {
-    		throw new Exceptions("Email Exists");
-    	}
-    	// Create de User
-    	usuarioService.save(nuevoUsuario);
-    	
-    	Usuario u = usuarioService.findByEmail(nuevoUsuario.getEmail());
+	@PostMapping("/registro")
+	@ApiOperation(value = "Registrar nuevo usuario")
+	public ResponseEntity<?> createRegistrationToken(@RequestBody RegistroDto nuevoUsuario)
+			throws AuthenticationException, Exceptions {
+
+		if (usuarioService.checkEmailRegistered(nuevoUsuario.getEmail())) {
+			throw new Exceptions("Email Exists");
+		}
+		// Create de User
+		usuarioService.save(nuevoUsuario);
+
+		Usuario u = usuarioService.findByEmail(nuevoUsuario.getEmail());
 		boolean admin = usuarioService.checkAdmin(nuevoUsuario.getEmail());
-    	
-        // Reload password post-security so we can generate the token
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(nuevoUsuario.getEmail());
-        final String token = jwtTokenUtil.generateToken(userDetails);
 
-        // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token, u.getEmail(), u.getNombreUsuario(), admin));
-    }
+		// Reload password post-security so we can generate the token
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(nuevoUsuario.getEmail());
+		final String token = jwtTokenUtil.generateToken(userDetails);
 
-//    // Refrescar usuario
-//    @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
-//    public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
-//        String authToken = request.getHeader(tokenHeader);
-//        final String token = authToken.substring(7);
-//        
-//        if (jwtTokenUtil.canTokenBeRefreshed(token)) {
-//            String refreshedToken = jwtTokenUtil.refreshToken(token);
-//            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
-//        } else {
-//            return ResponseEntity.badRequest().body(null);
-//        }
-//    }
+		// Return the token
+		return ResponseEntity.ok(new JwtAuthenticationResponse(token, u.getEmail(), u.getNombreUsuario(), admin));
+	}
 
 	// Error de autenticacion
 	@ExceptionHandler({ AuthenticationException.class })

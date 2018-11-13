@@ -13,9 +13,9 @@ const aportacionUrl = `${environment.apiUrl}/aportaciones`;
   providedIn: 'root'
 })
 export class AportacionService {
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-createAportacion(aportacionCreateDto: AportacionCreateDto): Observable<AportacionCreateResponse> {
+  createAportacion(aportacionCreateDto: AportacionCreateDto): Observable < AportacionCreateResponse > {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -24,32 +24,32 @@ createAportacion(aportacionCreateDto: AportacionCreateDto): Observable<Aportacio
       })
     };
 
-    return this.http.post<AportacionCreateResponse>(`${aportacionUrl}/nuevaAportacion`, aportacionCreateDto, requestOptions);
-}
+    return this.http.post < AportacionCreateResponse > (`${aportacionUrl}/nuevaAportacion`, aportacionCreateDto, requestOptions);
+  }
 
-getAllAportaciones(): Observable<AportacionCreateResponse[]> {
-  const requestOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.authService.getToken()}`,
-      'Access-Control-Allow-Origin': '*'
-    })
-  };
+  getAllAportaciones(campanyaId: number): Observable < AportacionCreateResponse[] > {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
 
-  return this.http.get<AportacionCreateResponse[]>(`${aportacionUrl}/listaAportaciones`, requestOptions);
- }
+    return this.http.get < AportacionCreateResponse[] > (`${aportacionUrl}/list/${campanyaId}`, requestOptions);
+  }
 
- deleteAportacion(element: AportacionCreateResponse): Observable<Aportacion[]>{
-  console.log(element);
-  const requestOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.authService.getToken()}`,
-      'Access-Control-Allow-Origin': '*'
-    })
-  };
+  deleteAportacion(element: AportacionCreateResponse): Observable < Aportacion[] > {
+    console.log(element);
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
 
-  return this.http.delete<Aportacion[]>(`${aportacionUrl}/remove/${element.id}`, requestOptions);
-}
+    return this.http.delete < Aportacion[] > (`${aportacionUrl}/remove/${element.id}`, requestOptions);
+  }
 
 }
