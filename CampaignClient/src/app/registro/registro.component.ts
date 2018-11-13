@@ -44,4 +44,15 @@ validarPassRepetida(){
   }
 }
 
+validarCampoVacio(){
+  
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (re.test(String(this.email).toLowerCase()) || this.contrasenya.length > 4 || this.nombreUsuario!='' || this.email!='' || this.contrasenya!='' || this.grupo!='') {
+      this.doRegistro();
+    }else{
+      console.log('Hay algún campo vacío.');
+    }  
+}
+
 }

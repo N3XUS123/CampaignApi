@@ -18,6 +18,7 @@ export class RegistroCampanyaComponent implements OnInit {
   }
 
   doRegistroCampanya() {
+    
     const registroCampanyaDto = new RegistroCampanyaDto(this.nombreCampanya, this.codigo);
     this.registroCampanyaService.registroCampanya(registroCampanyaDto).subscribe(registroCampanyaResp => {
       console.log(registroCampanyaResp);
@@ -29,4 +30,12 @@ export class RegistroCampanyaComponent implements OnInit {
     );
 }
 
+validarCampoVacio(){
+
+  if (this.nombreCampanya!='' || this.codigo!='') {
+    this.doRegistroCampanya();
+  }else{
+    console.log('Hay algún campo vacío.');
+  }  
+}
 }
