@@ -32,4 +32,12 @@ import { DatoEditado } from "../_dto/datoEditado.dto";
     });
     }
 
+    validarCampoVacio(){
+
+      if (this.tipo!='') {
+        this.editDato();
+      }else{
+        console.log('Hay algún campo vacío.');
+      }  
+    }
   }
