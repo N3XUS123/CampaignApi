@@ -43,7 +43,6 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('username');
-    localStorage.removeItem('admin');
   }
 
   /*

@@ -1,0 +1,28 @@
+div:first-child{
+    max-width: 75% !important;
+    width: 75% !important;
+    margin: 0 auto;
+    margin-top: 10%;
+    
+}
+
+.mat-header-cell{
+    text-align: center;
+    padding: 0px !important;
+}
+
+.mat-cell{
+    text-align: center;
+    padding: 0px !important;
+}
+
+#boton{
+    margin-right: 2% !important;
+}
+
+#floatingButton {
+    position: fixed;
+    left: 5%;
+    top: 5%;
+    z-index: 9999999;
+  }
