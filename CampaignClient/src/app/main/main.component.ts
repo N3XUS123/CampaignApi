@@ -4,10 +4,7 @@ import { AuthService } from '../_services/auth.service';
 import { CampaignService } from '../_services/campaign.service';
 import { CampaignResponse } from '../_interfaces/campaign.interface';
 import { MatDialog } from '@angular/material';
-import { Campanya } from '../_models/campanya';
-import { DialogNuevaAportacionComponent } from '../dialog-nueva-aportacion/dialog-nueva-aportacion.component';
-import { DialogEditarDatoComponent } from '../dialog-editar-dato/dialog-editar-dato.component';
-import { DatoMaestro } from '../_models/datoMaestro';
+import { DialogRegistroCampanyaComponent } from '../dialog-crear-campagna/dialog-crear-campagna.component';
 
 @Component({
   selector: 'app-main',
@@ -44,6 +41,14 @@ export class MainComponent implements OnInit {
       this.campaigns = campaignList;
     }, error => {
       console.log('Error. No recibe datos.');
+    });
+  }
+
+  openDialogNuevaCampagna() {
+    const dialogoNuevaCampagna = this.dialog.open(DialogRegistroCampanyaComponent);
+
+    dialogoNuevaCampagna.afterClosed().subscribe(result => {
+      this.showData();
     });
   }
 

@@ -90,6 +90,6 @@
 </div>
 
 <!-- BOTÓN FLOTANTE -->
-<button mat-fab id="floatingButton" *ngIf="isAdmin()" [routerLink]="['/registroCampanya']">
+<button mat-fab id="floatingButton" *ngIf="isAdmin()" (click)="openDialogNuevaCampagna()">
   <mat-icon>add</mat-icon>
 </button>

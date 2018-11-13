@@ -17,10 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salesianostriana.campaing.exception.CampanyaNotFoundException;
+import com.salesianostriana.campaing.formbean.CampanyaDto;
 import com.salesianostriana.campaing.model.Campanya;
+import com.salesianostriana.campaing.model.DatosMaestros;
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.CampanyaRepository;
+import com.salesianostriana.campaing.service.AportacionService;
 import com.salesianostriana.campaing.service.CampanyaService;
+import com.salesianostriana.campaing.service.DatosMaestrosService;
 import com.salesianostriana.campaing.service.UsuarioService;
 
 import io.swagger.annotations.Api;
@@ -36,6 +40,12 @@ public class CampanyaController {
 
 	@Autowired
 	private UsuarioService uService;
+	
+	@Autowired
+	private AportacionService aService;
+	
+	@Autowired
+	private DatosMaestrosService dService;
 	
 	@Autowired
 	private CampanyaRepository repo;
@@ -59,14 +69,15 @@ public class CampanyaController {
 
 	// Añadir
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/new")
+	@PostMapping("/add")
 	@ApiOperation(value = "Añadir una nueva campaña")
 	public ResponseEntity<?> newCampanya(@RequestBody Campanya newCampanya) {
-		Campanya c = campanyaService.save(newCampanya);
+		Campanya campanya = campanyaService.save(newCampanya);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(c.getId()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(campanya.getId())
+				.toUri();
 
-		return ResponseEntity.created(location).body(c);
+		return ResponseEntity.created(location).body(campanya);
 	}
 
 	@DeleteMapping("/remove/{id}")

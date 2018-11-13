@@ -1,5 +1,4 @@
 export class DatoMaestro {
-  [x: string]: any;
     tipo: string;
     id_campanya: number;
 

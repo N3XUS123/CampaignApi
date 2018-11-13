@@ -10,7 +10,6 @@ import { RegistroComponent } from './registro/registro.component';
 import { AppRoutingModule } from './app-routing.module'; 
 import { RouterModule } from '@angular/router';
 import { DatosMaestrosComponent } from './DatosMaestros/datosMaestros.component';
-import { RegistroCampanyaComponent } from './registroCampanya/registroCampanya.component';
 import { MainComponent } from './main/main.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTableModule } from '@angular/material/table';
@@ -23,6 +22,7 @@ import { DatosService } from './_services/datosMaestros.service';
 import { DialogNuevaAportacionComponent } from './dialog-nueva-aportacion/dialog-nueva-aportacion.component';
 import { RankingAportacionesComponent } from './ranking-aportaciones/ranking-aportaciones.component';
 import { DialogEditarDatoComponent } from './dialog-editar-dato/dialog-editar-dato.component';
+import { DialogRegistroCampanyaComponent } from './dialog-crear-campagna/dialog-crear-campagna.component';
 
 @NgModule({
   declarations: [
@@ -30,17 +30,18 @@ import { DialogEditarDatoComponent } from './dialog-editar-dato/dialog-editar-da
     LoginComponent,
     RegistroComponent,
     DatosMaestrosComponent,
-    RegistroCampanyaComponent,
     MainComponent,
     DialogNuevoDatoComponent,
     DialogNuevaAportacionComponent,
     RankingAportacionesComponent,
-    DialogEditarDatoComponent 
+    DialogEditarDatoComponent,
+    DialogRegistroCampanyaComponent
   ],
   entryComponents: [
     DialogNuevoDatoComponent,
     DialogNuevaAportacionComponent,
-    DialogEditarDatoComponent
+    DialogEditarDatoComponent,
+    DialogRegistroCampanyaComponent
 ],
   imports: [
     BrowserModule,

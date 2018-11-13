@@ -1,0 +1,11 @@
+<div fxLayout="column" fFlexFill>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombre" [(ngModel)]="nombreCampanya" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Código" [(ngModel)]="codigo" required>
+      </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addCampanya()">Guardar</button>
+
+</div>
