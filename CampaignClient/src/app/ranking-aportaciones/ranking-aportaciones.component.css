@@ -1,6 +1,55 @@
 #floatingButton {
-    position: fixed;
-    right: 5%;
-    bottom: 5%;
-    z-index: 9999999;
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 9999999;
+}
+
+#floatingButton2 {
+  position: fixed;
+  left: 5%;
+  top: 5%;
+  z-index: 9999999;
+}
+
+div:first-child {
+  max-width: 50% !important;
+  width: 50% !important;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+div:nth-child(2) {
+  max-width: 30% !important;
+  width: 30% !important;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+.mat-header-cell {
+  text-align: center;
+  padding: 0px !important;
+}
+
+.mat-cell {
+  text-align: center;
+  padding: 0px !important;
+}
+
+@media (max-width: 675px) {
+  div:first-child, div:nth-child(2){
+      margin-top: 20%;
   }
+}
+
+@media (max-width: 460px) {
+  div:first-child, div:nth-child(2){
+      margin-top: 25%;
+  }
+}
+
+@media (max-width: 265px) {
+  div:first-child, div:nth-child(2){
+      margin-top: 28%;
+  }
+}

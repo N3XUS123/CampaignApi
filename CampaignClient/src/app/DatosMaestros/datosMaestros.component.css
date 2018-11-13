@@ -26,3 +26,21 @@ div:first-child{
     top: 5%;
     z-index: 9999999;
   }
+
+  @media (max-width: 675px) {
+    div:first-child{
+        margin-top: 20%;
+    }
+  }
+
+  @media (max-width: 460px) {
+    div:first-child{
+        margin-top: 25%;
+    }
+  }
+
+  @media (max-width: 265px) {
+    div:first-child{
+        margin-top: 28%;
+    }
+  }
