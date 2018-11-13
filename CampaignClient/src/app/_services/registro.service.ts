@@ -27,12 +27,6 @@ export class RegistroService {
 
   setRegistroData(registroResponse: RegistroResponse) {
     localStorage.setItem('token', registroResponse.token);
-    localStorage.setItem('email', registroResponse.email);
-    localStorage.setItem('username', registroResponse.username);
-    let admin = 'false';
-    if (registroResponse.admin)
-      admin = 'true';
-    localStorage.setItem('admin', admin);
   }
 
 }

@@ -11,7 +11,7 @@
     <a mat-button (click)="showMine()">
       <mat-icon>collections_bookmark</mat-icon> Mis campañas
     </a>
-    <a mat-button routerLink="/datosMaestros">
+    <a mat-button routerLink="/datosMaestros" *ngIf="isAdmin()">
       <mat-icon>assignment</mat-icon> Datos Maestros
     </a>
     <div id="navbar-right">
@@ -21,10 +21,6 @@
       <a mat-button (click)="joinCampaign()">
         <mat-icon>add_to_photos</mat-icon>
       </a>
-      <button mat-button *ngIf="isAdmin()">
-        <mat-icon>settings</mat-icon>
-        <span>Administración</span>
-      </button>
       <button mat-button [matMenuTriggerFor]="navMenu">
         <mat-icon>account_box</mat-icon> {{nombre}}
       </button>
@@ -59,11 +55,6 @@
       <mat-icon>add_to_photos</mat-icon> Unirse a campaña
     </a>
   </li>
-  <li>
-    <a mat-button *ngIf="isAdmin()" (click)="showAdmin()">
-      <mat-icon>settings</mat-icon> Administración
-    </a>
-  </li>
   <li class="center">
     <a mat-button (click)="doLogout()">
       <mat-icon>power_settings_new</mat-icon> Desconectar
@@ -84,7 +75,7 @@
       <button mat-button (click)="DoEliminarCampanya(item.id)" *ngIf="isAdmin()">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-button routerLink="/ranking-aportaciones" (click)="passIdCampanya(item.id)">Ver más</button>
+      <button mat-button routerLink="/ranking-aportaciones" (click)="passIdCampanya(item.id)" *ngIf="item.unido">Ver más</button>
     </mat-card-actions>
   </mat-card>
 </div>

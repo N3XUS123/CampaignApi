@@ -54,7 +54,6 @@ public class AportacionController {
 				.body(aService.allMyCampaignsContributions(uService.findByEmail(emailLogueado), cService.findById(id).orElse(null)));
 	}
 
-	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/nuevaAportacion")
 	@ApiOperation(value = "Añadir una nueva aportación")
 	public ResponseEntity<?> newAportacion(@RequestBody AportacionDto nuevaAportacion) {
@@ -67,7 +66,6 @@ public class AportacionController {
 		return ResponseEntity.created(location).body(a);
 	}
 
-	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/rankingAportaciones")
 	@ApiOperation(value = "Mostrar ranking del top cinco aportaciones")
 	public ResponseEntity<?> RankingAportaciones(long idCampanya) {

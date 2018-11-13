@@ -13,12 +13,13 @@ import { DialogRegistroCampanyaComponent } from '../dialog-crear-campagna/dialog
 })
 export class MainComponent implements OnInit {
   campaigns: CampaignResponse[];
-  nombre = localStorage.getItem('username');
-
+  nombre: String;
+  admin: boolean;
   id: Number;
   nombreCampanya: String;
   codigo: String;
   campaignInput: String;
+
 
 
   constructor(private authService: AuthService, private campaignService: CampaignService, private router: Router, public dialog: MatDialog) {}
@@ -28,6 +29,7 @@ export class MainComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       this.showData();
+      this.getUserData();
     }
   }
 
@@ -53,7 +55,7 @@ export class MainComponent implements OnInit {
   }
 
   isAdmin() {
-    if (localStorage.getItem('admin') === 'true') {
+    if (this.admin) {
       return true;
     }
   }
@@ -80,6 +82,13 @@ export class MainComponent implements OnInit {
 
   passIdCampanya(id:number) {
     this.campaignService.passidCampanya(id);
+  }
+
+  getUserData(){
+    this.campaignService.getUserData().subscribe(userData => {
+      this.nombre = userData.usuario;
+      this.admin = userData.admin;
+    });
   }
 
 }

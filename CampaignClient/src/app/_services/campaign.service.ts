@@ -4,6 +4,7 @@ import { CampaignResponse } from '../_interfaces/campaign.interface';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { CampaignsDto } from '../_dto/campaigns.dto';
+import { UsuarioLogueadoResponse } from '../_interfaces/usuarioLogeado.interface'
 
 const campaignUrl = `${environment.apiUrl}/campanyas`;
 
@@ -46,4 +47,8 @@ export class CampaignService {
     this.idSource.next(id.toString());
   }
   
+  getUserData(): Observable<UsuarioLogueadoResponse> {
+    return this.http.get<UsuarioLogueadoResponse>(`${environment.apiUrl}/usuario/getUserData`, this.requestOptions);
+  }
+
 }

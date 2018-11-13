@@ -17,14 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salesianostriana.campaing.exception.CampanyaNotFoundException;
-import com.salesianostriana.campaing.formbean.CampanyaDto;
 import com.salesianostriana.campaing.model.Campanya;
-import com.salesianostriana.campaing.model.DatosMaestros;
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.CampanyaRepository;
-import com.salesianostriana.campaing.service.AportacionService;
 import com.salesianostriana.campaing.service.CampanyaService;
-import com.salesianostriana.campaing.service.DatosMaestrosService;
 import com.salesianostriana.campaing.service.UsuarioService;
 
 import io.swagger.annotations.Api;
@@ -42,15 +38,8 @@ public class CampanyaController {
 	private UsuarioService uService;
 	
 	@Autowired
-	private AportacionService aService;
-	
-	@Autowired
-	private DatosMaestrosService dService;
-	
-	@Autowired
 	private CampanyaRepository repo;
 
-	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/list")
 	@ApiOperation(value = "Mostrar listado completo de campañas")
 	public ResponseEntity<?> listarCampanyas() {
@@ -89,7 +78,6 @@ public class CampanyaController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(campanyaService.findAll());
 	}
 
-	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/join")
 	@ApiOperation(value = "Unirse a una campaña")
 	public ResponseEntity<?> joinCampaign(@RequestBody String code) {

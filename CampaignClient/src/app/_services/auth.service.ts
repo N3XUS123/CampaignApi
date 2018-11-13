@@ -27,12 +27,6 @@ export class AuthService {
 
   setLoginData(loginResponse: LoginResponse) {
     localStorage.setItem('token', loginResponse.token);
-    localStorage.setItem('email', loginResponse.email);
-    localStorage.setItem('username', loginResponse.username);
-    let admin = 'false';
-    if (loginResponse.admin)
-      admin = 'true';
-    localStorage.setItem('admin', admin);
   }
 
   getToken(): String {
@@ -41,8 +35,6 @@ export class AuthService {
 
   removeLoginData() {
     localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    localStorage.removeItem('username');
   }
 
   /*
