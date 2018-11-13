@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.campaing.formbean.AportacionDto;
-import com.salesianostriana.campaing.formbean.DatosMaestrosDto;
 import com.salesianostriana.campaing.model.Aportacion;
-import com.salesianostriana.campaing.model.Campanya;
-import com.salesianostriana.campaing.model.DatosMaestros;
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.AportacionRepository;
 import com.salesianostriana.campaing.repository.CampanyaRepository;
@@ -38,7 +35,7 @@ public class AportacionService {
 	}
 	
 	public List<Aportacion> Ranking(long idCampanya) {
-		return repo.ranking(idCampanya);
+		return repo.rankingTotal(idCampanya);
 	}
 	
 	public void deleteById(Long id) {
