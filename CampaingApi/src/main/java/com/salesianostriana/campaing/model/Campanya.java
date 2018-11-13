@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,11 +31,11 @@ public class Campanya {
 	private String codigo;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval=true, mappedBy="campanya", fetch=FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval=true, mappedBy="campanya")
 	private List<Aportacion> aportaciones;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="campanya", orphanRemoval=true, cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="campanya", orphanRemoval=true, cascade=CascadeType.REMOVE)
 	private List<DatosMaestros> datosMaestro;
 	
 	@JsonIgnore
