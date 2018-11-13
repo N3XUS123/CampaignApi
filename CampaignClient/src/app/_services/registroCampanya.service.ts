@@ -28,9 +28,4 @@ export class RegistroCampanyaService {
     return this.http.post<RegistroCampanyaResponse>(`${registroCampanyaUrl}/new`, registroCampanyaDto, requestOptions);
   }
 
-  setRegistroCampanyaData(registroCampanyaResponse: RegistroCampanyaResponse) {
-    localStorage.setItem('nombreCampanya', registroCampanyaResponse.nombreCampanya);
-    localStorage.setItem('codigo', registroCampanyaResponse.codigo);
-  }
-
 }

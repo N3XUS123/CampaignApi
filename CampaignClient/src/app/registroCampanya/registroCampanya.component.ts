@@ -21,9 +21,7 @@ export class RegistroCampanyaComponent implements OnInit {
     
     const registroCampanyaDto = new RegistroCampanyaDto(this.nombreCampanya, this.codigo);
     this.registroCampanyaService.registroCampanya(registroCampanyaDto).subscribe(registroCampanyaResp => {
-      console.log(registroCampanyaResp);
-      this.registroCampanyaService.setRegistroCampanyaData(registroCampanyaResp);
-
+      console.log('Campaña creada');
     }, error => {
       console.log('Error en petición de registro');
     }
