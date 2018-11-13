@@ -1,10 +1,10 @@
 <div fxLayout="column" fFlexFill>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Nombre" [(ngModel)]="tipo">
+    <input matInput placeholder="Nombre" [(ngModel)]="tipo" required>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Campaña" [(value)]="campanya">
+    <mat-select placeholder="Campaña" [(value)]="campanya" required>
       <mat-option *ngFor="let c of campaigns" [value]="c.id">
         {{c.nombreCampanya}}
       </mat-option>

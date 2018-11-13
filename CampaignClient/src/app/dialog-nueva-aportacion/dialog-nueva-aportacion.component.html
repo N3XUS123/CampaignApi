@@ -1,14 +1,14 @@
 <div fxLayout="column" fFlexFill>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Dato" [(ngModel)]="dato">
+      <input matInput placeholder="Dato" [(ngModel)]="dato" required>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Cantidad" [(ngModel)]="cantidad"></textarea>
+      <textarea matInput placeholder="Cantidad" [(ngModel)]="cantidad" required></textarea>
     </mat-form-field>
   
     <mat-form-field>
-      <mat-select placeholder="Categoría" [(value)]="idDatosMaestros">
+      <mat-select placeholder="Categoría" [(value)]="idDatosMaestros" required>
         <mat-option *ngFor="let d of datosMaestros" [value]="d.id">
           {{d.tipo}}
         </mat-option>

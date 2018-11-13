@@ -3,21 +3,21 @@
   <mat-tab label="Registro" id="tab">
     <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Nombre" [(ngModel)]="nombreUsuario">
+        <input matInput placeholder="Nombre" [(ngModel)]="nombreUsuario" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Email" [type]="email" [(ngModel)]="email">
+        <input matInput placeholder="Email" [type]="email" [(ngModel)]="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Contraseña" [type]="hide2 ? 'text' : 'password'" [(ngModel)]="contrasenya">
+        <input matInput placeholder="Contraseña" [type]="hide2 ? 'text' : 'password'" [(ngModel)]="contrasenya" required>
         <mat-icon matSuffix (click)="hide2 = !hide2">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Repetir contraseña" [type]="hide3 ? 'text' : 'password'">
+        <input matInput placeholder="Repetir contraseña" [type]="hide3 ? 'text' : 'password'" required [(ngModel)]="contrasenyaRepetida">
         <mat-icon matSuffix (click)="hide3 = !hide3">{{hide2 ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Clase" [(ngModel)]="grupo">
+        <mat-select placeholder="Clase" [(ngModel)]="grupo" required>
           <mat-option value="option">1º DAM</mat-option>
           <mat-option value="option">2º DAM</mat-option>
           <mat-option value="option">1º Telecomunicaciones</mat-option>

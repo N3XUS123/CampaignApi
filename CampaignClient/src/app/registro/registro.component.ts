@@ -14,6 +14,7 @@ export class RegistroComponent implements OnInit {
   email: string;
   contrasenya: string;
   grupo: string;
+  contrasenyaRepetida: string;
 
   constructor(private registroService: RegistroService, private router: Router) { }
 
@@ -21,7 +22,8 @@ export class RegistroComponent implements OnInit {
   }
 
   doRegistro() {
-    const registroDto = new RegistroDto(this.nombreUsuario, this.email, this.contrasenya, this.grupo);
+    if (this.validarPassRepetida()) {
+      const registroDto = new RegistroDto(this.nombreUsuario, this.email, this.contrasenya, this.grupo);
     this.registroService.registro(registroDto).subscribe(registroResp => {
       this.registroService.setRegistroData(registroResp);
       this.router.navigate(['/main']);
@@ -30,6 +32,16 @@ export class RegistroComponent implements OnInit {
       console.log('Error en petición de registro');
     }
     );
+    }
+    
+}
+
+validarPassRepetida(){
+  if (this.contrasenya===this.contrasenyaRepetida) {
+    return true;
+  }else{
+    return false;
+  }
 }
 
 }
