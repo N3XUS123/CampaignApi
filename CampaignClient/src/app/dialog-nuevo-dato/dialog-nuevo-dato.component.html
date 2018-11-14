@@ -5,6 +5,7 @@
 
   <mat-form-field>
     <mat-select placeholder="Campaña" [(value)]="campanya" required>
+      <mat-option [value]=0>Seleccione una campaña</mat-option>
       <mat-option *ngFor="let c of campaigns" [value]="c.id">
         {{c.nombreCampanya}}
       </mat-option>
