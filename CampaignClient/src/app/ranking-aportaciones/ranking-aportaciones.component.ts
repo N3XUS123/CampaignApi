@@ -22,8 +22,7 @@ export class RankingAportacionesComponent implements OnInit {
   constructor(private aportacionService: AportacionService,
     private campanyaService: CampaignService,
     public snackBar: MatSnackBar,
-    public dialog: MatDialog,
-    private router: Router) {}
+    public dialog: MatDialog) {}
 
   ngOnInit() {
     this.campanyaService.currentId.subscribe(message => (this.campanyaId = parseInt(message)));
@@ -45,14 +44,16 @@ export class RankingAportacionesComponent implements OnInit {
     });
   }
 
-  openAportacionDialog(campaign: Campanya) {
-    const dialogRef = this.dialog.open(DialogNuevaAportacionComponent, {
+  openAportacionDialog(campanyaId) {
+    const dialogAportacion = this.dialog.open(DialogNuevaAportacionComponent, {
       width: '250px',
-      data: {
-        idCamp: campaign.id
-      }
+      data: { idCamp: campanyaId}
     });
-  }
+
+    dialogAportacion.afterClosed().subscribe(result => {
+      this.getAportaciones('Aportación creada');
+  });
+}
 
   eliminarAportacion(aportacion: Aportacion) {
     this.aportacionService.deleteAportacion(aportacion).subscribe(listaAportaciones => {
@@ -62,7 +63,4 @@ export class RankingAportacionesComponent implements OnInit {
       duration: 3000,
     });
   }
-
-
-
 }

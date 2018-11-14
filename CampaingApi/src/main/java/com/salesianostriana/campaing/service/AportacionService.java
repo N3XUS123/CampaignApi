@@ -27,8 +27,8 @@ public class AportacionService {
 	private DatosMaestrosRepository dRepo;
 
 	public Aportacion save(AportacionDto nuevaAportacion, Usuario u) {
-		Aportacion a = new Aportacion(nuevaAportacion.getDato(), nuevaAportacion.getCantidad(),
-				cRepo.getOne(nuevaAportacion.getIdCampanya()), dRepo.getOne(nuevaAportacion.getIdDatosMaestro()), u);
+		Aportacion a = new Aportacion(nuevaAportacion.getDato(), nuevaAportacion.getCantidad(), 
+				dRepo.getOne(nuevaAportacion.getIdCampanya()).getCampanya(), dRepo.getOne(nuevaAportacion.getIdDatosMaestro()), u);
 		return repo.save(a);
 	}
 
