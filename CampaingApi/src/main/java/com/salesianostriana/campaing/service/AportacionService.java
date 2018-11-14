@@ -11,7 +11,6 @@ import com.salesianostriana.campaing.model.Aportacion;
 import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.AportacionRepository;
-import com.salesianostriana.campaing.repository.CampanyaRepository;
 import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
 
 @Service
@@ -21,14 +20,11 @@ public class AportacionService {
 	private AportacionRepository repo;
 
 	@Autowired
-	private CampanyaRepository cRepo;
-
-	@Autowired
 	private DatosMaestrosRepository dRepo;
 
 	public Aportacion save(AportacionDto nuevaAportacion, Usuario u) {
-		Aportacion a = new Aportacion(nuevaAportacion.getDato(), nuevaAportacion.getCantidad(),
-				cRepo.getOne(nuevaAportacion.getIdCampanya()), dRepo.getOne(nuevaAportacion.getIdDatosMaestro()), u);
+		Aportacion a = new Aportacion(nuevaAportacion.getDato(), nuevaAportacion.getCantidad(), 
+				dRepo.getOne(nuevaAportacion.getIdDatosMaestro()).getCampanya(), dRepo.getOne(nuevaAportacion.getIdDatosMaestro()), u);
 		return repo.save(a);
 	}
 

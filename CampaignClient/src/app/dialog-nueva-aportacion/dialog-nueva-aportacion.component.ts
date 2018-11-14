@@ -32,7 +32,6 @@ export class DialogNuevaAportacionComponent implements OnInit {
   }
 
   saveAportacion() {
-  
     const aportacionCreate = new AportacionCreateDto(this.dato, this.cantidad, this.idCampanya, this.idDatosMaestros);
     this.aportacionService.createAportacion(aportacionCreate).subscribe(
      aportacion => {
