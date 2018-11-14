@@ -19,13 +19,11 @@ export class DialogRegistroCampanyaComponent implements OnInit {
   }
 
 addCampanya() {
+  if (this.nombreCampanya!='' || this.codigo!='') {
     const registroCampanyaDto = new RegistroCampanyaDto(this.nombreCampanya, this.codigo);
     this.registroCampanyaService.createCampanya(registroCampanyaDto).subscribe(registroCampanyaResp => {
       this.dialogRef.close(registroCampanyaResp);
   });
-
-  if (this.nombreCampanya!='' || this.codigo!='') {
-    this.addCampanya();
   }else{
     console.log('Hay algún campo vacío.');
   }  

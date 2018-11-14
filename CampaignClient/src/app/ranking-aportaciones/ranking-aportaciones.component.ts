@@ -26,7 +26,11 @@ export class RankingAportacionesComponent implements OnInit {
 
   ngOnInit() {
     this.campanyaService.currentId.subscribe(message => (this.campanyaId = parseInt(message)));
+    if(isNaN(this.campanyaId)){
+      window.location.replace('/main');
+    }
     this.getAportaciones('Listado de datos cargado');
+
   }
 
   getAportaciones(mensaje: string) {
