@@ -6,8 +6,16 @@ import { AportacionCreateResponse } from "../_interfaces/aportacion-create-respo
 import { AportacionCreateDto } from "../_dto/aportacion-create.dto";
 import { Observable } from "rxjs";
 import { Aportacion } from "../_models/aportacion";
+import { RankingResponse } from '../_interfaces/ranking-response.interface'
 
 const aportacionUrl = `${environment.apiUrl}/aportaciones`;
+const requestOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    'Access-Control-Allow-Origin': '*'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -16,39 +24,19 @@ export class AportacionService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   createAportacion(aportacionCreateDto: AportacionCreateDto): Observable < AportacionCreateResponse > {
-    const requestOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken()}`,
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-
     return this.http.post < AportacionCreateResponse > (`${aportacionUrl}/nuevaAportacion`, aportacionCreateDto, requestOptions);
   }
 
   getAllAportaciones(campanyaId: number): Observable < AportacionCreateResponse[] > {
-    const requestOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken()}`,
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-
     return this.http.get < AportacionCreateResponse[] > (`${aportacionUrl}/list/${campanyaId}`, requestOptions);
   }
 
   deleteAportacion(element:number): Observable < Aportacion[] > {
-    const requestOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken()}`,
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-
     return this.http.delete < Aportacion[] > (`${aportacionUrl}/remove/${element}`, requestOptions);
+  }
+
+  getRanking(campanyaId: number): Observable<RankingResponse[]> {
+    return this.http.get<RankingResponse[]>(`${aportacionUrl}/rankingAportaciones/${campanyaId}`, requestOptions);
   }
 
 }

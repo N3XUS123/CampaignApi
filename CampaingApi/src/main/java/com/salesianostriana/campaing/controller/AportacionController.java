@@ -66,10 +66,11 @@ public class AportacionController {
 		return ResponseEntity.created(location).body(a);
 	}
 
-	@GetMapping("/rankingAportaciones")
+	@GetMapping("/rankingAportaciones/{id}")
 	@ApiOperation(value = "Mostrar ranking del top cinco aportaciones")
-	public ResponseEntity<?> RankingAportaciones(long idCampanya) {
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(aService.Ranking(idCampanya));
+	public ResponseEntity<?> RankingAportaciones(@PathVariable Long id) {
+		System.out.println(id);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(aService.Ranking(id));
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")

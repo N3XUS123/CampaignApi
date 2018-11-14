@@ -5,6 +5,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { DialogNuevaAportacionComponent } from '../dialog-nueva-aportacion/dialog-nueva-aportacion.component';
 import { Aportacion } from '../_models/aportacion';
 import { CampaignService } from '../_services/campaign.service'
+import { RankingResponse } from '../_interfaces/ranking-response.interface'
 
 @Component({
   selector: 'app-ranking-aportaciones',
@@ -14,7 +15,9 @@ import { CampaignService } from '../_services/campaign.service'
 export class RankingAportacionesComponent implements OnInit {
 
   displayedColumns: string[] = ['datosMaestros', 'dato', 'cantidad', 'fecha', 'acciones'];
+  rankingColumns: string[] = ['grupo', 'cantidad'];
   dataSource: AportacionCreateResponse[];
+  ranking: RankingResponse[];
   campanyaId: number;
 
   constructor(private aportacionService: AportacionService,
@@ -28,6 +31,7 @@ export class RankingAportacionesComponent implements OnInit {
       window.location.replace('/main');
     }
     this.getAportaciones('Listado de datos cargado');
+    this.showRanking();
 
   }
 
@@ -64,5 +68,11 @@ export class RankingAportacionesComponent implements OnInit {
     this.snackBar.open(`Eliminando ${aportacion.dato}`, 'Cerrar', {
       duration: 3000,
     });
+  }
+
+  showRanking() {
+    this.aportacionService.getRanking(this.campanyaId).subscribe(Ranking => {
+      this.ranking = Ranking;
+    })
   }
 }
