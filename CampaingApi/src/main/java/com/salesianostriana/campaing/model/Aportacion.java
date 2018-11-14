@@ -44,7 +44,8 @@ public class Aportacion {
 	@JoinColumn(name = "CAMPANYA", nullable=false)
 	private Campanya campanya;
 	
-	@JsonIgnore
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "tipo")
+	@JsonIdentityReference(alwaysAsId = true)
 	@ManyToOne
 	@JoinColumn(name = "DATO_MAESTRO", nullable=false)
 	private DatosMaestros datosMaestros;
