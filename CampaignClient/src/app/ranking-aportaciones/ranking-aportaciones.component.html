@@ -1,5 +1,11 @@
 <div fxFlex="100%" fxFlexFill>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlexFill>
+    
+    <ng-container matColumnDef="datosMaestros">
+      <th mat-header-cell *matHeaderCellDef> Producto </th>
+      <td mat-cell *matCellDef="let element"> {{element.datosMaestros}} </td>
+    </ng-container>
+    
     <!-- Position Column -->
     <ng-container matColumnDef="dato">
       <th mat-header-cell *matHeaderCellDef> Dato </th>
@@ -35,7 +41,11 @@
 <div fxFlex="100%" fxFlexFill>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlexFill>
   
-  
+      <ng-container matColumnDef="datosMaestros">
+        <th mat-header-cell *matHeaderCellDef> ? </th>
+        <td mat-cell *matCellDef="let element">  </td>
+      </ng-container>
+
       <!-- Position Column -->
       <ng-container matColumnDef="dato">
         <th mat-header-cell *matHeaderCellDef> ? </th>
@@ -59,5 +69,8 @@
     </table>
   </div>
 
+  <button mat-fab id="floatingButton2" [routerLink]="['/main']">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
  
 
