@@ -36,7 +36,7 @@ public class AportacionController {
 
 	@Autowired
 	private UsuarioService uService;
-	
+
 	@Autowired
 	private CampanyaService cService;
 
@@ -49,9 +49,9 @@ public class AportacionController {
 	@ApiOperation(value = "Mostrar listado completo de las aportaciones del usuario en una campaña.")
 	public ResponseEntity<?> listarMisAportaciones(@PathVariable Long id) {
 		String emailLogueado = SecurityContextHolder.getContext().getAuthentication().getName();
-		
-		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(aService.allMyCampaignsContributions(uService.findByEmail(emailLogueado), cService.findById(id).orElse(null)));
+
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(aService
+				.allMyCampaignsContributions(uService.findByEmail(emailLogueado), cService.findById(id).orElse(null)));
 	}
 
 	@PostMapping("/nuevaAportacion")
@@ -60,7 +60,7 @@ public class AportacionController {
 		String emailLogueado = SecurityContextHolder.getContext().getAuthentication().getName();
 		Usuario u = uService.findByEmail(emailLogueado);
 		Aportacion a = aService.save(nuevaAportacion, u);
-		
+
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(a.getId()).toUri();
 
 		return ResponseEntity.created(location).body(a);
@@ -75,7 +75,10 @@ public class AportacionController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/remove/{id}")
 	@ApiOperation(value = "Borrar dato maestro")
-	public void deleteDatosMaestros(@PathVariable Long id) {
+	public ResponseEntity<?> deleteDatosMaestros(@PathVariable Long id) {
+		String emailLogueado = SecurityContextHolder.getContext().getAuthentication().getName();
 		aService.deleteById(id);
+		return ResponseEntity.status(HttpStatus.ACCEPTED)
+				.body(aService.allMyCampaignsContributions(uService.findByEmail(emailLogueado), cService.findById(id).orElse(null)));
 	}
 }
