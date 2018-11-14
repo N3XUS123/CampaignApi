@@ -1,19 +1,20 @@
 <div fxLayout="column" fFlexFill>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Dato" [(ngModel)]="dato" required>
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <input matInput type="number" placeholder="Cantidad" [(ngModel)]="cantidad" required>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-select placeholder="Categoría" [(value)]="idDatosMaestros" required>
-        <mat-option *ngFor="let d of datosMaestros" [value]="d.id">
-          {{d.tipo}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="saveAportacion()">Añadir aportación</button>
-  </div>
+  <mat-form-field>
+    <mat-select placeholder="Categoría" [(value)]="idDatosMaestros" required>
+      <mat-option *ngFor="let d of datosMaestros" [value]="d.id">
+        {{d.tipo}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="number" placeholder="Cantidad" [(ngModel)]="cantidad" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Dato" [(ngModel)]="dato" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="saveAportacion()">Añadir aportación</button>
+</div>
