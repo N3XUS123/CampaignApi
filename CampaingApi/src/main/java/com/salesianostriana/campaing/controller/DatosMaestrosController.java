@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -91,9 +92,9 @@ public class DatosMaestrosController {
 		return repo.findById(id).orElseThrow(() -> new DatosMaestrosNotFoundException(id));
 	}
 	
-	@GetMapping("/listarDatosCampanya")
+	@GetMapping("/listarDatosCampanya/{id}")
 	@ApiOperation(value = "Mostrar los datos maestros de una campaña.")
-	public ResponseEntity<?> listarDatosCampanya(long idCampanya) {
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(datosMaestrosService.listarDatosCampanya(idCampanya));
+	public ResponseEntity<?> listarDatosCampanya(@PathVariable long id) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(datosMaestrosService.listarDatosCampanya(id));
 	}
 }

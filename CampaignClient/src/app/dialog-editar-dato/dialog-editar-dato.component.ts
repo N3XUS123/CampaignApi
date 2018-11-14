@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { DatosService } from "../_services/datosMaestros.service";
 import { CampaignResponse } from "../_interfaces/campaign.interface";
-import { CampaignService } from "../_services/campaign.service"
 import { Datos } from "../_interfaces/datosMaestros.interface";
 import { DatoEditado } from "../_dto/datoEditado.dto";
 

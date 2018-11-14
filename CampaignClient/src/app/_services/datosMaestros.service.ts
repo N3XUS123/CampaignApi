@@ -65,7 +65,7 @@ getAllDatos(): Observable<Datos[]> {
     return this.http.get<Datos[]>(`${datosUrl}/list`, requestOptions);
    }
 
-   getDatosCampanya(): Observable<Datos[]> {
+   getDatosCampanya(idCampanya: number): Observable<Datos[]> {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -74,6 +74,6 @@ getAllDatos(): Observable<Datos[]> {
       })
     };
 
-    return this.http.get<Datos[]>(`${datosUrl}/listarDatosCampanya`, requestOptions);
+    return this.http.get<Datos[]>(`${datosUrl}/listarDatosCampanya/${idCampanya}`, requestOptions);
    }
 }

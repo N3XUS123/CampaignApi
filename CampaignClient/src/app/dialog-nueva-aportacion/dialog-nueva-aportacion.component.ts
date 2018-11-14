@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { AportacionService } from "../_services/aportacion.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { AportacionCreateDto } from "../_dto/aportacion-create.dto";
-import { Aportacion } from "../_models/aportacion";
 import { Datos } from "../_interfaces/datosMaestros.interface";
 import { DatosService } from "../_services/datosMaestros.service";
 
@@ -14,7 +13,7 @@ import { DatosService } from "../_services/datosMaestros.service";
 export class DialogNuevaAportacionComponent implements OnInit {
   dato: string;
   cantidad: number;
-  idCampanya: number;
+  campanyaId:number;
   idDatosMaestros: number;
   datosMaestros: Datos[];
 
@@ -23,8 +22,8 @@ export class DialogNuevaAportacionComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    this.idCampanya = this.data.idCamp;
-    this.datosMaestrosService.getDatosCampanya().subscribe(datosList => {
+    this.campanyaId = this.data.idCamp;
+    this.datosMaestrosService.getDatosCampanya(this.campanyaId).subscribe(datosList => {
       this.datosMaestros = datosList;
     }, error => {
       console.log('Error. No recibe datos.');
@@ -32,7 +31,7 @@ export class DialogNuevaAportacionComponent implements OnInit {
   }
 
   saveAportacion() {
-    const aportacionCreate = new AportacionCreateDto(this.dato, this.cantidad, this.idCampanya, this.idDatosMaestros);
+    const aportacionCreate = new AportacionCreateDto(this.dato, this.cantidad, this.campanyaId, this.idDatosMaestros);
     this.aportacionService.createAportacion(aportacionCreate).subscribe(
      aportacion => {
        this.dialogRef.close(aportacion);
