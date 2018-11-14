@@ -64,4 +64,16 @@ getAllDatos(): Observable<Datos[]> {
 
     return this.http.get<Datos[]>(`${datosUrl}/list`, requestOptions);
    }
+
+   getDatosCampanya(): Observable<Datos[]> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    return this.http.get<Datos[]>(`${datosUrl}/listarDatosCampanya`, requestOptions);
+   }
 }

@@ -24,7 +24,7 @@ export class DialogNuevaAportacionComponent implements OnInit {
 
   ngOnInit() {
     this.idCampanya = this.data.idCamp;
-    this.datosMaestrosService.getAllDatos().subscribe(datosList => {
+    this.datosMaestrosService.getDatosCampanya().subscribe(datosList => {
       this.datosMaestros = datosList;
     }, error => {
       console.log('Error. No recibe datos.');

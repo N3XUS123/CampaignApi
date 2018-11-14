@@ -41,4 +41,7 @@ public class DatosMaestrosService {
 		return repo.save(datoMaestro);
 	}
 
+	public List<DatosMaestros> listarDatosCampanya(long idCampanya){
+		return repo.listarDatosCampanya(idCampanya);
+	}
 }

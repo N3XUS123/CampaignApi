@@ -90,4 +90,10 @@ public class DatosMaestrosController {
 
 		return repo.findById(id).orElseThrow(() -> new DatosMaestrosNotFoundException(id));
 	}
+	
+	@GetMapping("/listarDatosCampanya")
+	@ApiOperation(value = "Mostrar los datos maestros de una campaña.")
+	public ResponseEntity<?> listarDatosCampanya(long idCampanya) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(datosMaestrosService.listarDatosCampanya(idCampanya));
+	}
 }
