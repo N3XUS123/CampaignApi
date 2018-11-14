@@ -14,7 +14,7 @@ import { CampaignService } from "../_services/campaign.service"
   export class DialogNuevoDatoComponent implements OnInit {
     tipo: string;
     campaigns: CampaignResponse[];
-    campanya: number;
+    campanya=0;
   
     constructor(private datosService: DatosService, private campaignService: CampaignService,
       public dialogRef: MatDialogRef<DialogNuevoDatoComponent>) { }
@@ -29,13 +29,14 @@ import { CampaignService } from "../_services/campaign.service"
 
     }
   
-    addDato() {   
+    addDato() { 
+
+      if(this.campanya!=0){
       const datoCreate = new DatoMaestro(this.tipo, this.campanya);
       this.datosService.createDato(datoCreate).subscribe(
        dato => {
          this.dialogRef.close(dato);
+       });
       }
-     );
     }
-  
   }
