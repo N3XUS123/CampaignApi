@@ -25,11 +25,10 @@ export class MainComponent implements OnInit {
   constructor(private authService: AuthService, private campaignService: CampaignService, private router: Router, public dialog: MatDialog) {}
 
   ngOnInit() {
-    if (this.authService.getToken() == null) {
-      this.router.navigate(['/']);
-    } else {
       this.showData();
       this.getUserData();
+    if (this.authService.getToken() == null) {
+      this.router.navigate(['/']);
     }
   }
 

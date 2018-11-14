@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.getToken() != null) {
-      this.router.navigate(['/main']);
+      window.location.replace('/main');
     }
   }
 
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     const loginDto = new LoginDto(this.email, this.password);
     this.authService.login(loginDto).subscribe(loginResp => {
       this.authService.setLoginData(loginResp);
-      this.router.navigate(['/main']);
+      window.location.replace('/main');
     }, error => {
       console.log('Error en petición de login');
     });
