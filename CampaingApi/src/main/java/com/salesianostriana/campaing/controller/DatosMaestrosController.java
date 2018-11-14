@@ -29,7 +29,6 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api(tags = "Datos Maestros", description="REST API DE LAS CATEGORIAS DE APORTACIONES")
-@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/datosMaestros/")
 public class DatosMaestrosController {
 	
@@ -43,6 +42,7 @@ public class DatosMaestrosController {
 	private DatosMaestrosRepository repo;
 	
 	//Listar
+	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/list")
 	@ApiOperation(value="Mostrar listado completo de datos maestros")
 	public ResponseEntity<?> listarDatosMaestros(){

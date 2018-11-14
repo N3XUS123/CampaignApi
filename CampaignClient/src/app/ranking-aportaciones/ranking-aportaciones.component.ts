@@ -13,7 +13,7 @@ import { CampaignService } from '../_services/campaign.service'
 })
 export class RankingAportacionesComponent implements OnInit {
 
-  displayedColumns: string[] = ['datosMaestros', 'dato', 'cantidad', 'fecha'];
+  displayedColumns: string[] = ['datosMaestros', 'dato', 'cantidad', 'fecha', 'acciones'];
   dataSource: AportacionCreateResponse[];
   campanyaId: number;
 
