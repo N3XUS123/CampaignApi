@@ -39,8 +39,7 @@ export class AportacionService {
     return this.http.get < AportacionCreateResponse[] > (`${aportacionUrl}/list/${campanyaId}`, requestOptions);
   }
 
-  deleteAportacion(element: AportacionCreateResponse): Observable < Aportacion[] > {
-    console.log(element);
+  deleteAportacion(element:number): Observable < Aportacion[] > {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -49,7 +48,7 @@ export class AportacionService {
       })
     };
 
-    return this.http.delete < Aportacion[] > (`${aportacionUrl}/remove/${element.id}`, requestOptions);
+    return this.http.delete < Aportacion[] > (`${aportacionUrl}/remove/${element}`, requestOptions);
   }
 
 }
