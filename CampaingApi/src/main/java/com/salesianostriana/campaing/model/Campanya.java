@@ -1,8 +1,7 @@
 package com.salesianostriana.campaing.model;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,7 +39,7 @@ public class Campanya {
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "campanyas")
-	private Set<Usuario> usuario = new HashSet<>();
+	private List<Usuario> usuario = new ArrayList<>();
 
 	public Campanya() {
 	}

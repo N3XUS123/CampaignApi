@@ -42,7 +42,6 @@ public class DatosMaestrosController {
 	private DatosMaestrosRepository repo;
 	
 	//Listar
-	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/list")
 	@ApiOperation(value="Mostrar listado completo de datos maestros")
 	public ResponseEntity<?> listarDatosMaestros(){
@@ -86,6 +85,7 @@ public class DatosMaestrosController {
 	}
 
 	@GetMapping("/datosMaestros/{id}")
+	@ApiOperation(value="Mostrar un solo dato maestro")
 	public DatosMaestros one(@PathVariable Long id) {
 
 		return repo.findById(id).orElseThrow(() -> new DatosMaestrosNotFoundException(id));

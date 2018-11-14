@@ -42,6 +42,7 @@ public class AportacionController {
 	private CampanyaService cService;
 
 	@GetMapping("/aportacion/{id}")
+	@ApiOperation(value="Mostrar una aportacion")
 	public Aportacion one(@PathVariable Long id) {
 		return aService.findOne(id);
 	}

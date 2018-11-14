@@ -90,6 +90,7 @@ public class CampanyaController {
 	}
 	
 	@GetMapping("/campanya/{id}")
+	@ApiOperation(value="Mostrar una campaña")
 	public Campanya one(@PathVariable Long id) {
 
 		return repo.findById(id).orElseThrow(() -> new CampanyaNotFoundException(id));
