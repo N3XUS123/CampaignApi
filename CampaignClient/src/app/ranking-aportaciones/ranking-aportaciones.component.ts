@@ -58,12 +58,14 @@ export class RankingAportacionesComponent implements OnInit {
 
     dialogAportacion.afterClosed().subscribe(result => {
       this.getAportaciones('Aportación creada');
+      this.showRanking();
   });
 }
 
   eliminarAportacion(aportacion: Aportacion) {
     this.aportacionService.deleteAportacion(aportacion.id).subscribe(listaAportaciones => {
       this.dataSource = listaAportaciones;
+      this.showRanking();
     })
     this.snackBar.open(`Eliminando ${aportacion.dato}`, 'Cerrar', {
       duration: 3000,

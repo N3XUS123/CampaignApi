@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
     if (this.authService.getToken() != null) {
       window.location.replace('/main');
     }
@@ -25,6 +28,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginDto).subscribe(loginResp => {
       this.authService.setLoginData(loginResp);
       window.location.replace('/main');
+
+      
     }, error => {
       console.log('Error en petición de login');
     });

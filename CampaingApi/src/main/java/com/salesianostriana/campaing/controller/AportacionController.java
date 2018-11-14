@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salesianostriana.campaing.formbean.AportacionDto;
 import com.salesianostriana.campaing.model.Aportacion;
+import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.service.AportacionService;
 import com.salesianostriana.campaing.service.CampanyaService;
@@ -78,8 +79,9 @@ public class AportacionController {
 	@ApiOperation(value = "Borrar dato maestro")
 	public ResponseEntity<?> deleteDatosMaestros(@PathVariable Long id) {
 		String emailLogueado = SecurityContextHolder.getContext().getAuthentication().getName();
+		Campanya c = aService.findOne(id).getCampanya();
 		aService.deleteById(id);
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(aService.allMyCampaignsContributions(uService.findByEmail(emailLogueado), cService.findById(id).orElse(null)));
+				.body(aService.allMyCampaignsContributions(uService.findByEmail(emailLogueado), c));
 	}
 }
