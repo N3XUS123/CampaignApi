@@ -1,5 +1,8 @@
 package com.salesianostriana.campaing.formbean;
 
+import lombok.Data;
+
+@Data
 public class CampanyaDto {
 
 	private long id;
