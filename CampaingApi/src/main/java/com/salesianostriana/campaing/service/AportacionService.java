@@ -1,5 +1,6 @@
 package com.salesianostriana.campaing.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import com.salesianostriana.campaing.model.Campanya;
 import com.salesianostriana.campaing.model.Usuario;
 import com.salesianostriana.campaing.repository.AportacionRepository;
 import com.salesianostriana.campaing.repository.DatosMaestrosRepository;
+import com.salesianostriana.campaing.repository.UsuarioRepository;
+import com.salesianostriana.campaing.response.RankingQueryResponse;
+import com.salesianostriana.campaing.response.RankingResponse;
 
 @Service
 public class AportacionService {
@@ -21,6 +25,9 @@ public class AportacionService {
 
 	@Autowired
 	private DatosMaestrosRepository dRepo;
+	
+	@Autowired
+	private UsuarioRepository uRepo;
 
 	public Aportacion save(AportacionDto nuevaAportacion, Usuario u) {
 		Aportacion a = new Aportacion(nuevaAportacion.getDato(), nuevaAportacion.getCantidad(), 
@@ -32,8 +39,12 @@ public class AportacionService {
 		return repo.findAll();
 	}
 	
-	public List<Aportacion> Ranking(long idCampanya) {
-		return repo.rankingTotal(idCampanya);
+	public List<RankingResponse> Ranking(long idCampanya) {
+		List<RankingResponse> ListRanking = new ArrayList<>();
+		for (RankingQueryResponse rqr: repo.rankingTotal(idCampanya)) {
+			ListRanking.add(new RankingResponse(uRepo.findById(rqr.getU()).orElse(null).getGrupo(), rqr.getC()));
+		}
+		return ListRanking;
 	}
 	
 	public void deleteById(Long id) {

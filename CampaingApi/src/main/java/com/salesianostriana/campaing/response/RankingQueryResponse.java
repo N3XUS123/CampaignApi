@@ -1,12 +1,9 @@
 package com.salesianostriana.campaing.response;
 
-import lombok.Data;
+public interface RankingQueryResponse {
 
-@Data
-public class RankingQueryResponse {
+	long getU();
 
-	private long UserId;
-	private long CategoriaId;
-	private int Total;
-	
+	int getC();
+
 }
